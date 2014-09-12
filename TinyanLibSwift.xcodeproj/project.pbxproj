@@ -7,9 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		305FB6F119C1C41F0062BDCF /* CCommonGamecenterDataControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305FB6F019C1C41F0062BDCF /* CCommonGamecenterDataControl.swift */; };
+		306D6DCC19BFF21400F63CF2 /* CCommonAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306D6DCB19BFF21400F63CF2 /* CCommonAppDelegate.swift */; };
+		306D6DCE19BFF44200F63CF2 /* CCommonGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306D6DCD19BFF44200F63CF2 /* CCommonGame.swift */; };
+		306D6DD019BFF48600F63CF2 /* CCommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306D6DCF19BFF48600F63CF2 /* CCommonViewController.swift */; };
+		306D6DD219BFF4EB00F63CF2 /* CCommonGeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306D6DD119BFF4EB00F63CF2 /* CCommonGeneral.swift */; };
+		306D6DD619C1454900F63CF2 /* CCommonUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306D6DD519C1454900F63CF2 /* CCommonUserData.swift */; };
+		3085A6F419A64B0E00181E1D /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B7D1EC19682C20008C7F46 /* dummy.swift */; };
+		3085A6F719A64BB000181E1D /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B7D1EC19682C20008C7F46 /* dummy.swift */; };
 		30B7D1B019682A73008C7F46 /* TinyanLibSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 30B7D1AF19682A73008C7F46 /* TinyanLibSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30B7D1B619682A73008C7F46 /* TinyanLibSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30B7D1AA19682A73008C7F46 /* TinyanLibSwift.framework */; };
 		30B7D1BD19682A73008C7F46 /* TinyanLibSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B7D1BC19682A73008C7F46 /* TinyanLibSwiftTests.swift */; };
+		30BC4A7E19A91ABB00AC63C7 /* CCommonSoundControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BC4A7D19A91ABB00AC63C7 /* CCommonSoundControl.swift */; };
+		30BC4ACD19A9341500AC63C7 /* OALControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 30BC4AC919A9341500AC63C7 /* OALControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30BC4ACE19A9341500AC63C7 /* OALControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BC4ACA19A9341500AC63C7 /* OALControl.m */; };
+		30BC4ACF19A9341500AC63C7 /* OALData.h in Headers */ = {isa = PBXBuildFile; fileRef = 30BC4ACB19A9341500AC63C7 /* OALData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30BC4AD019A9341500AC63C7 /* OALData.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BC4ACC19A9341500AC63C7 /* OALData.m */; };
+		30BC4AD319A9348D00AC63C7 /* OAL3DVector.h in Headers */ = {isa = PBXBuildFile; fileRef = 30BC4AD119A9348D00AC63C7 /* OAL3DVector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30BC4AD419A9348D00AC63C7 /* OAL3DVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BC4AD219A9348D00AC63C7 /* OAL3DVector.m */; };
+		30F6A7AF19BFF8D6006A8212 /* CCommonBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F6A7AE19BFF8D6006A8212 /* CCommonBannerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +39,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		305FB6F019C1C41F0062BDCF /* CCommonGamecenterDataControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CCommonGamecenterDataControl.swift; path = TinyanLibSwift/classes/ios/CCommonGamecenterDataControl.swift; sourceTree = "<group>"; };
+		306D6DCB19BFF21400F63CF2 /* CCommonAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CCommonAppDelegate.swift; path = TinyanLibSwift/classes/ios/CCommonAppDelegate.swift; sourceTree = "<group>"; };
+		306D6DCD19BFF44200F63CF2 /* CCommonGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CCommonGame.swift; path = TinyanLibSwift/classes/nnn/CCommonGame.swift; sourceTree = "<group>"; };
+		306D6DCF19BFF48600F63CF2 /* CCommonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CCommonViewController.swift; path = TinyanLibSwift/classes/ios/CCommonViewController.swift; sourceTree = "<group>"; };
+		306D6DD119BFF4EB00F63CF2 /* CCommonGeneral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CCommonGeneral.swift; path = TinyanLibSwift/classes/nnn/CCommonGeneral.swift; sourceTree = "<group>"; };
+		306D6DD519C1454900F63CF2 /* CCommonUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CCommonUserData.swift; path = TinyanLibSwift/classes/nnn/CCommonUserData.swift; sourceTree = "<group>"; };
 		30B7D1AA19682A73008C7F46 /* TinyanLibSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TinyanLibSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B7D1AE19682A73008C7F46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30B7D1AF19682A73008C7F46 /* TinyanLibSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TinyanLibSwift.h; sourceTree = "<group>"; };
 		30B7D1B519682A73008C7F46 /* TinyanLibSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyanLibSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B7D1BB19682A73008C7F46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30B7D1BC19682A73008C7F46 /* TinyanLibSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyanLibSwiftTests.swift; sourceTree = "<group>"; };
+		30B7D1EC19682C20008C7F46 /* dummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dummy.swift; sourceTree = "<group>"; };
+		30BC4A7D19A91ABB00AC63C7 /* CCommonSoundControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CCommonSoundControl.swift; path = TinyanLibSwift/classes/CCommonSoundControl.swift; sourceTree = "<group>"; };
+		30BC4AC919A9341500AC63C7 /* OALControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OALControl.h; path = TinyanLibSwift/classes/openal/OALControl.h; sourceTree = "<group>"; };
+		30BC4ACA19A9341500AC63C7 /* OALControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OALControl.m; path = TinyanLibSwift/classes/openal/OALControl.m; sourceTree = "<group>"; };
+		30BC4ACB19A9341500AC63C7 /* OALData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OALData.h; path = TinyanLibSwift/classes/openal/OALData.h; sourceTree = "<group>"; };
+		30BC4ACC19A9341500AC63C7 /* OALData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OALData.m; path = TinyanLibSwift/classes/openal/OALData.m; sourceTree = "<group>"; };
+		30BC4AD119A9348D00AC63C7 /* OAL3DVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAL3DVector.h; path = TinyanLibSwift/classes/openal/OAL3DVector.h; sourceTree = "<group>"; };
+		30BC4AD219A9348D00AC63C7 /* OAL3DVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAL3DVector.m; path = TinyanLibSwift/classes/openal/OAL3DVector.m; sourceTree = "<group>"; };
+		30F6A7AE19BFF8D6006A8212 /* CCommonBannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CCommonBannerViewController.swift; path = TinyanLibSwift/classes/ios/CCommonBannerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,9 +81,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		306D6DD319C00D6300F63CF2 /* nnn */ = {
+			isa = PBXGroup;
+			children = (
+				306D6DCD19BFF44200F63CF2 /* CCommonGame.swift */,
+				306D6DD119BFF4EB00F63CF2 /* CCommonGeneral.swift */,
+				30BC4A7D19A91ABB00AC63C7 /* CCommonSoundControl.swift */,
+			);
+			name = nnn;
+			sourceTree = "<group>";
+		};
+		306D6DD419C00D7C00F63CF2 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				306D6DCB19BFF21400F63CF2 /* CCommonAppDelegate.swift */,
+				30F6A7AE19BFF8D6006A8212 /* CCommonBannerViewController.swift */,
+				306D6DCF19BFF48600F63CF2 /* CCommonViewController.swift */,
+			);
+			name = ios;
+			sourceTree = "<group>";
+		};
 		30B7D1A019682A73008C7F46 = {
 			isa = PBXGroup;
 			children = (
+				305FB6F019C1C41F0062BDCF /* CCommonGamecenterDataControl.swift */,
+				306D6DD519C1454900F63CF2 /* CCommonUserData.swift */,
+				306D6DD419C00D7C00F63CF2 /* ios */,
+				306D6DD319C00D6300F63CF2 /* nnn */,
+				30BC4AD619A95BA800AC63C7 /* source */,
+				30BC4AD519A95B6F00AC63C7 /* openal */,
 				30B7D1AC19682A73008C7F46 /* TinyanLibSwift */,
 				30B7D1B919682A73008C7F46 /* TinyanLibSwiftTests */,
 				30B7D1AB19682A73008C7F46 /* Products */,
@@ -73,6 +130,7 @@
 			children = (
 				30B7D1AF19682A73008C7F46 /* TinyanLibSwift.h */,
 				30B7D1AD19682A73008C7F46 /* Supporting Files */,
+				30B7D1EC19682C20008C7F46 /* dummy.swift */,
 			);
 			path = TinyanLibSwift;
 			sourceTree = "<group>";
@@ -102,6 +160,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		30BC4AD519A95B6F00AC63C7 /* openal */ = {
+			isa = PBXGroup;
+			children = (
+				30BC4AD119A9348D00AC63C7 /* OAL3DVector.h */,
+				30BC4AD219A9348D00AC63C7 /* OAL3DVector.m */,
+				30BC4AC919A9341500AC63C7 /* OALControl.h */,
+				30BC4ACA19A9341500AC63C7 /* OALControl.m */,
+				30BC4ACB19A9341500AC63C7 /* OALData.h */,
+				30BC4ACC19A9341500AC63C7 /* OALData.m */,
+			);
+			name = openal;
+			sourceTree = "<group>";
+		};
+		30BC4AD619A95BA800AC63C7 /* source */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = source;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -109,6 +187,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30BC4ACF19A9341500AC63C7 /* OALData.h in Headers */,
+				30BC4AD319A9348D00AC63C7 /* OAL3DVector.h in Headers */,
+				30BC4ACD19A9341500AC63C7 /* OALControl.h in Headers */,
 				30B7D1B019682A73008C7F46 /* TinyanLibSwift.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,6 +291,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30BC4AD019A9341500AC63C7 /* OALData.m in Sources */,
+				30F6A7AF19BFF8D6006A8212 /* CCommonBannerViewController.swift in Sources */,
+				306D6DD019BFF48600F63CF2 /* CCommonViewController.swift in Sources */,
+				3085A6F719A64BB000181E1D /* dummy.swift in Sources */,
+				30BC4ACE19A9341500AC63C7 /* OALControl.m in Sources */,
+				306D6DCC19BFF21400F63CF2 /* CCommonAppDelegate.swift in Sources */,
+				30BC4AD419A9348D00AC63C7 /* OAL3DVector.m in Sources */,
+				305FB6F119C1C41F0062BDCF /* CCommonGamecenterDataControl.swift in Sources */,
+				30BC4A7E19A91ABB00AC63C7 /* CCommonSoundControl.swift in Sources */,
+				306D6DD619C1454900F63CF2 /* CCommonUserData.swift in Sources */,
+				306D6DCE19BFF44200F63CF2 /* CCommonGame.swift in Sources */,
+				306D6DD219BFF4EB00F63CF2 /* CCommonGeneral.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3085A6F419A64B0E00181E1D /* dummy.swift in Sources */,
 				30B7D1BD19682A73008C7F46 /* TinyanLibSwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,7 +343,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Shinji Yamaguchi (N4DCS5X7H2)";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -271,6 +365,7 @@
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -295,7 +390,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Shinji Yamaguchi (N4DCS5X7H2)";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -310,6 +405,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -320,6 +416,7 @@
 		30B7D1C119682A73008C7F46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -329,12 +426,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		30B7D1C219682A73008C7F46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -398,6 +497,7 @@
 				30B7D1C219682A73008C7F46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		30B7D1C319682A73008C7F46 /* Build configuration list for PBXNativeTarget "TinyanLibSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -406,6 +506,7 @@
 				30B7D1C519682A73008C7F46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -16,4 +16,6 @@ FOUNDATION_EXPORT const unsigned char TinyanLibSwiftVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <TinyanLibSwift/PublicHeader.h>
 
-
+#import "OAL3DVector.h"
+#import "OALData.h"
+#import "OALControl.h"
