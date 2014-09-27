@@ -11,12 +11,12 @@ import SpriteKit
 import GameKit
 
 
-class CCommonViewController: UIViewController , GKGameCenterControllerDelegate , UINavigationControllerDelegate{
+public class CCommonViewController: UIViewController , GKGameCenterControllerDelegate , UINavigationControllerDelegate{
 	
 	var m_drawType : Int?
 	var m_game : CCommonGame?
 	
-	override func viewDidLoad() {
+	override public func viewDidLoad() {
 		super.viewDidLoad()
 		
 		/* Pick a size for the scene */
@@ -39,7 +39,7 @@ class CCommonViewController: UIViewController , GKGameCenterControllerDelegate ,
 		
 	}
 
-	func setGame(lpGame : CCommonGame )
+	public func setGame(lpGame : CCommonGame )
 	{
 		(UIApplication.sharedApplication().delegate as CCommonAppDelegate).setGame(lpGame)
 	}
@@ -62,13 +62,13 @@ class CCommonViewController: UIViewController , GKGameCenterControllerDelegate ,
 	
 	
 	
-	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation)
+	override public func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation)
 	{
 		//	[m_game onRotate:self.interfaceOrientation from:fromInterfaceOrientation];
 
 	}
 	
-	override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval)
+	override public func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval)
 	{
 		//	[m_game willRotate:self.interfaceOrientation to:toInterfaceOrientation duration:duration];
 
@@ -84,17 +84,17 @@ class CCommonViewController: UIViewController , GKGameCenterControllerDelegate ,
 		
 	}
 	
-	func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!)
+	public func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!)
 	{
 		self.dismissViewControllerAnimated(true, completion: nil)
 		m_game?.inGameCenter(false)
 	}
 	
-	override func shouldAutorotate() -> Bool {
+	override public func shouldAutorotate() -> Bool {
 		return true
 	}
 	
-	override func supportedInterfaceOrientations() -> Int {
+	override public func supportedInterfaceOrientations() -> Int {
 		if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
 			return Int(UIInterfaceOrientationMask.AllButUpsideDown.toRaw())
 		} else {
@@ -102,12 +102,12 @@ class CCommonViewController: UIViewController , GKGameCenterControllerDelegate ,
 		}
 	}
 	
-	override func didReceiveMemoryWarning() {
+	override public func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Release any cached data, images, etc that aren't in use.
 	}
 	
-	override func prefersStatusBarHidden() -> Bool {
+	override public func prefersStatusBarHidden() -> Bool {
 		return true
 	}
 }

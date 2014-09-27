@@ -17,12 +17,12 @@ class CCommonGamecenterDataControl
 	var m_gamecenterEnableFlag = false
 	var localPlayer : GKLocalPlayer? = nil
 
-	var m_identifier = [String?]()
-	var m_scoreTypeFlag = [Bool]()
-	var m_gamecenterDataExistFlag = [Bool]()
-	var m_gamecenterScore = [Int64]()
-	var m_gamecenterScoreExistFlag = [Bool]()
-	var m_gamecenterAchievement = [Double]()
+	var m_identifier = [String?](count: 256, repeatedValue: nil)
+	var m_scoreTypeFlag = [Bool](count: 256, repeatedValue: false)
+	var m_gamecenterDataExistFlag = [Bool](count: 256, repeatedValue: false)
+	var m_gamecenterScore = [Int64](count: 256, repeatedValue: 0)
+	var m_gamecenterScoreExistFlag = [Bool](count: 256, repeatedValue: false)
+	var m_gamecenterAchievement = [Double](count: 256, repeatedValue: 0.0)
 	
 	var m_achievementLoadFlag = false
 	var m_achievementLoadError = false
@@ -129,7 +129,7 @@ class CCommonGamecenterDataControl
 		}
 	}
 	
-	func setGamecenterDataScore(identifier : String , score : Int64)
+	func setGamecenterScore(identifier : String , score : Int64)
 	{
 		if let n = searchIdentifier(identifier)
 		{
@@ -167,6 +167,7 @@ class CCommonGamecenterDataControl
 		{
 			return
 		}
+		
 		
 		if GKLocalPlayer.localPlayer().authenticated
 		{

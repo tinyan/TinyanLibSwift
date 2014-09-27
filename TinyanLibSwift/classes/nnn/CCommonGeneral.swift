@@ -9,11 +9,13 @@
 import Foundation
 import SpriteKit
 
-class CCommonGeneral : SKScene
+
+
+public class CCommonGeneral : SKScene
 {
 	
 	
-	override func didMoveToView(view: SKView)
+	override public func didMoveToView(view: SKView)
 	{
 		/* Setup your scene here */
 		//		let myLabel = SKLabelNode(fontNamed:"Chalkduster")
@@ -38,15 +40,16 @@ class CCommonGeneral : SKScene
 	*/
 	
 	
-	required init(coder aDecoder: NSCoder) {
+	required public init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder);
 		//self.init(coder: aDecoder)
 	}
 	
-	var m_game : CCommonGame?
+	
+	public var m_game : CCommonGame?
 	
 	
-	init(game : CCommonGame, size:CGSize)
+	public init(game : CCommonGame, size:CGSize)
 	{
 		//var size = CGSizeMake(600,400)
 		super.init(size: size)
@@ -55,20 +58,25 @@ class CCommonGeneral : SKScene
 		scaleMode = .AspectFill
 	}
 	
-	func ExitMode()
+	public func ExitMode()
 	{
 		NSLog("general:ExitMode()")
 	}
 	
 	
-	func EnterMode()
+	public func EnterMode()
 	{
 		NSLog("general:EnterMode()")
 		
 	}
 	
-	override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
+	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
 	{
+		if m_game!.checkActive()
+		{
+			onTouchesBegan(touches, withEvent: event)
+		}
+		
 		/* Called when a touch begins */
 		
 		for touch: AnyObject in touches {
@@ -77,10 +85,50 @@ class CCommonGeneral : SKScene
 			NSLog("touch %f %f",Float(location.x),Float(location.y));
 		}
 	}
-	override func update(currentTime: CFTimeInterval)
+	
+	override public func touchesMoved(touches: NSSet, withEvent event: UIEvent)
 	{
-		m_game?.onUpdate(currentTime)
+		if m_game!.checkActive()
+		{
+			onTouchesMoved(touches, withEvent: event)
+		}
+	}
+	
+	override public func touchesEnded(touches: NSSet, withEvent event: UIEvent)
+	{
+		if m_game!.checkActive()
+		{
+			onTouchesEnded(touches, withEvent: event)
+		}
+	}
+
+	//dummy routine
+	func onTouchesBegan(touches: NSSet, withEvent event: UIEvent)
+	{
+	}
+	func onTouchesMoved(touches: NSSet, withEvent event: UIEvent)
+	{
+	}
+	func onTouchesEnded(touches: NSSet, withEvent event: UIEvent)
+	{
+	}
+
+	
+	override public func update(currentTime: CFTimeInterval)
+	{
+		if m_game!.checkActive()
+		{
+			m_game?.onUpdate(currentTime)
+			onUpdate(currentTime)
+		}
+		
 		//	NSLog("update general")
 		/* Called before each frame is rendered */
 	}
+	
+	//dummy
+	func onUpdate(currentTime: CFTimeInterval)
+	{
+	}
+	
 }
