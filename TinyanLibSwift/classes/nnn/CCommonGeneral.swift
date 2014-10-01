@@ -11,6 +11,7 @@ import SpriteKit
 
 
 
+
 public class CCommonGeneral : SKScene
 {
 	
@@ -103,13 +104,13 @@ public class CCommonGeneral : SKScene
 	}
 
 	//dummy routine
-	func onTouchesBegan(touches: NSSet, withEvent event: UIEvent)
+	public func onTouchesBegan(touches: NSSet, withEvent event: UIEvent)
 	{
 	}
-	func onTouchesMoved(touches: NSSet, withEvent event: UIEvent)
+	public func onTouchesMoved(touches: NSSet, withEvent event: UIEvent)
 	{
 	}
-	func onTouchesEnded(touches: NSSet, withEvent event: UIEvent)
+	public func onTouchesEnded(touches: NSSet, withEvent event: UIEvent)
 	{
 	}
 
@@ -127,7 +128,7 @@ public class CCommonGeneral : SKScene
 	}
 	
 	//dummy
-	func onUpdate(currentTime: CFTimeInterval)
+	public func onUpdate(currentTime: CFTimeInterval)
 	{
 	}
 	
