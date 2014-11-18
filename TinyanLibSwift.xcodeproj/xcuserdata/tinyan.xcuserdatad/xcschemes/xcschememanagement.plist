@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>lipo.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -18,6 +23,21 @@
 			<true/>
 		</dict>
 		<key>30B7D1B419682A73008C7F46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>30E55DF619FE134F008ACC6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>30E55DFA19FE176B008ACC6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>30E55E0019FE1845008ACC6F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -2,7 +2,7 @@
 //  OALData.m
 //  TinyanLib
 //
-//  Created by たいにゃん on 10/05/15.
+//  Created by Tinyan on 10/05/15.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
@@ -69,7 +69,8 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	// サウンドファイルのデータをロードする (WAVファイルから)
 	NSString* path		= [[NSBundle mainBundle] pathForResource: filename ofType: extension];
 	if (path == nil){
-		NSLog(@"Error: No Sound named %@.%@ found", filename, extension);
+//		NSLog(@"Error: No Sound named %@.%@ found", filename, extension);
+//		println("Error: No Sound named \(filename).\(extenshon)");
 		return;
 	}
 	
@@ -88,8 +89,14 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	// データをbufferにロード
 	alBufferData(alBufferID, alFormatBuffer, alBuffer, alBufferLen, alFreqBuffer);
 	ALenum err = alGetError();
-	if (err == AL_OUT_OF_MEMORY) NSLog(@"Error: AL_OUT_OF_MEMORY");
-	else if (err == AL_INVALID_VALUE) NSLog(@"Error: AL_INVALID_VALUE");
+	if (err == AL_OUT_OF_MEMORY)
+	{
+	//	NSLog(@"Error: AL_OUT_OF_MEMORY");
+	}
+	else if (err == AL_INVALID_VALUE)
+	{
+		//NSLog(@"Error: AL_INVALID_VALUE");
+	}
 	
 	// bufferをsourceに対応づける
 	alSourcei(alSourceID, AL_BUFFER, alBufferID);

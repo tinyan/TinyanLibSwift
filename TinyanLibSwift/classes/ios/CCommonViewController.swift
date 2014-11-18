@@ -2,8 +2,8 @@
 //  GameViewController.swift
 //  colors
 //
-//  Created by たいにゃん on 2014/08/11.
-//  Copyright (c) 2014年 bugnekosoft. All rights reserved.
+//  Created by Tinyan on 2014/08/11.
+//  Copyright (c) 2014 bugnekosoft. All rights reserved.
 //
 
 import UIKit
@@ -41,6 +41,7 @@ public class CCommonViewController: UIViewController , GKGameCenterControllerDel
 
 	public func setGame(lpGame : CCommonGame )
 	{
+		m_game = lpGame
 		(UIApplication.sharedApplication().delegate as CCommonAppDelegate).setGame(lpGame)
 	}
 	
@@ -87,6 +88,7 @@ public class CCommonViewController: UIViewController , GKGameCenterControllerDel
 	public func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!)
 	{
 		self.dismissViewControllerAnimated(true, completion: nil)
+	//	NSLog("gameCenterViewControllerDidFinish")
 		m_game?.inGameCenter(false)
 	}
 	
@@ -96,9 +98,9 @@ public class CCommonViewController: UIViewController , GKGameCenterControllerDel
 	
 	override public func supportedInterfaceOrientations() -> Int {
 		if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-			return Int(UIInterfaceOrientationMask.AllButUpsideDown.toRaw())
+			return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
 		} else {
-			return Int(UIInterfaceOrientationMask.All.toRaw())
+			return Int(UIInterfaceOrientationMask.All.rawValue)
 		}
 	}
 	

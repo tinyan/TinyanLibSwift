@@ -2,35 +2,36 @@
 //  CCommonGamecenterDataControl.swift
 //  TinyanLibSwift
 //
-//  Created by たいにゃん on 2014/09/11.
-//  Copyright (c) 2014年 bugnekosoft. All rights reserved.
+//  Created by Tinyan on 2014/09/11.
+//  Copyright (c) 2014 bugnekosoft. All rights reserved.
 //
 
 import Foundation
 import GameKit
 
+let GAMECENTER_DATA_MAX:Int = 256
 
-class CCommonGamecenterDataControl
+public class CCommonGamecenterDataControl
 {
 	var m_number = 0
-	var m_max = 256
+	var m_max = GAMECENTER_DATA_MAX
 	var m_gamecenterEnableFlag = false
 	var localPlayer : GKLocalPlayer? = nil
 
-	var m_identifier = [String?](count: 256, repeatedValue: nil)
-	var m_scoreTypeFlag = [Bool](count: 256, repeatedValue: false)
-	var m_gamecenterDataExistFlag = [Bool](count: 256, repeatedValue: false)
-	var m_gamecenterScore = [Int64](count: 256, repeatedValue: 0)
-	var m_gamecenterScoreExistFlag = [Bool](count: 256, repeatedValue: false)
-	var m_gamecenterAchievement = [Double](count: 256, repeatedValue: 0.0)
+	var m_identifier = [String?](count: GAMECENTER_DATA_MAX, repeatedValue: nil)
+	var m_scoreTypeFlag = [Bool](count: GAMECENTER_DATA_MAX, repeatedValue: false)
+	var m_gamecenterDataExistFlag = [Bool](count: GAMECENTER_DATA_MAX, repeatedValue: false)
+	var m_gamecenterScore = [Int64](count: GAMECENTER_DATA_MAX, repeatedValue: 0)
+	var m_gamecenterScoreExistFlag = [Bool](count: GAMECENTER_DATA_MAX, repeatedValue: false)
+	var m_gamecenterAchievement = [Double](count: GAMECENTER_DATA_MAX, repeatedValue: 0.0)
 	
 	var m_achievementLoadFlag = false
 	var m_achievementLoadError = false
 	var m_achievementLoadingFlag = false
 	
-	init()
+	public init()
 	{
-		for i in 0..<256
+		for i in 0..<GAMECENTER_DATA_MAX
 		{
 			m_identifier[i] = nil
 			m_scoreTypeFlag[i] = false
@@ -41,26 +42,32 @@ class CCommonGamecenterDataControl
 		}
 	}
 	
-	func setGamecenterEnable(flag : Bool)
+	public func setGamecenterEnable(flag : Bool)
 	{
 		m_gamecenterEnableFlag = flag
 	}
 	
-	func authenticateLocalPlayer()
+	public func authenticateLocalPlayer()
 	{
-		if m_gamecenterEnableFlag
+//		println("authenticateLocalPlayer:1")
+		if !m_gamecenterEnableFlag
 		{
 			return;
 		}
 		
 		localPlayer = GKLocalPlayer.localPlayer()
 		
+	//	NSLog("authenticateLocalPlayer:2")
 		localPlayer?.authenticateHandler =
 		{
 			(viewController : UIViewController!,error : NSError!) in
 			
+		//	NSLog("authenticateLocalPlayer:3")
+			
 			if viewController != nil
 			{
+		//		NSLog("authenticateLocalPlayer:4-a")
+				
 				//		NSLog(@"game center view");
 				//			[self showAuthenticationDialogWhenReasonable: viewController];
 				UIApplication.sharedApplication().delegate?.window??.rootViewController?.presentViewController(viewController, animated: true,completion:nil)
@@ -69,20 +76,24 @@ class CCommonGamecenterDataControl
 			}
 			else if self.localPlayer!.authenticated
 			{
+		//		NSLog("authenticateLocalPlayer:4-b")
 				//		NSLog(@"found player");
 				//		[self authenticatedPlayer: localPlayer];
 				
 			}
 			else
 			{
+			//	NSLog("authenticateLocalPlayer:4-c")
+				
 				//		NSLog(@"error game center");
 				//		[self disableGameCenter];
 				
 			}
+			
 		}
 	}
 	
-	func addIdentifier(identifier : String , scoreTypeFlag : Bool) ->Bool
+	public func addIdentifier(identifier : String , scoreTypeFlag : Bool) ->Bool
 	{
 		if m_number >= m_max
 		{
@@ -96,7 +107,7 @@ class CCommonGamecenterDataControl
 		return true
 	}
 	
-	func addIdentifiers(identifiers : [String] , scoreTypeFlag : Bool) -> Bool
+	public func addIdentifiers(identifiers : [String] , scoreTypeFlag : Bool) -> Bool
 	{
 		var returnFlag = true
 		
@@ -111,7 +122,7 @@ class CCommonGamecenterDataControl
 		return returnFlag
 	}
 	
-	func getGamecenterDataExistFlag(identifier : String) -> Bool
+	public func getGamecenterDataExistFlag(identifier : String) -> Bool
 	{
 		if let n = searchIdentifier(identifier)
 		{
@@ -121,7 +132,7 @@ class CCommonGamecenterDataControl
 		return false
 	}
 	
-	func setGamecenterDataExistFlag(identifier : String , flag : Bool)
+	public func setGamecenterDataExistFlag(identifier : String , flag : Bool)
 	{
 		if let n = searchIdentifier(identifier)
 		{
@@ -129,7 +140,7 @@ class CCommonGamecenterDataControl
 		}
 	}
 	
-	func setGamecenterScore(identifier : String , score : Int64)
+	public func setGamecenterScore(identifier : String , score : Int64)
 	{
 		if let n = searchIdentifier(identifier)
 		{
@@ -141,7 +152,7 @@ class CCommonGamecenterDataControl
 		}
 	}
 	
-	func setGamecenterAchievement(identifier : String , percent : Double)
+	public func setGamecenterAchievement(identifier : String , percent : Double)
 	{
 		if let n = searchIdentifier(identifier)
 		{
@@ -153,7 +164,7 @@ class CCommonGamecenterDataControl
 		}
 	}
 	
-	func setGamecenterAchievements(achievements : [GKAchievement])
+	public func setGamecenterAchievements(achievements : [GKAchievement])
 	{
 		for achievement in achievements
 		{
@@ -161,7 +172,7 @@ class CCommonGamecenterDataControl
 		}
 	}
 
-	func loadGamecenterAchievement()
+	public func loadGamecenterAchievement()
 	{
 		if !m_gamecenterEnableFlag || m_achievementLoadFlag || m_achievementLoadError || m_achievementLoadingFlag
 		{
@@ -205,7 +216,7 @@ class CCommonGamecenterDataControl
 		}
 	}
 	
-	func getGamecenterScore(identifier : String) -> Int64
+	public func getGamecenterScore(identifier : String) -> Int64
 	{
 		if let n = searchIdentifier(identifier)
 		{
@@ -218,7 +229,7 @@ class CCommonGamecenterDataControl
 		return 0
 	}
 	
-	func getGamecenterAchievement(identifier : String) -> Double
+	public func getGamecenterAchievement(identifier : String) -> Double
 	{
 		if let n = searchIdentifier(identifier)
 		{
@@ -233,7 +244,7 @@ class CCommonGamecenterDataControl
 	
 	
 	
-	func searchIdentifier(identifier : String) -> Int?
+	public func searchIdentifier(identifier : String) -> Int?
 	{
 		for i in 0..<m_number
 		{

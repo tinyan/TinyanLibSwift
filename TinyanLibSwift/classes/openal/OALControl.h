@@ -2,7 +2,7 @@
 //  OALControl.h
 //  TinyanLib
 //
-//  Created by たいにゃん on 10/05/15.
+//  Created by Tinyan on 10/05/15.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 

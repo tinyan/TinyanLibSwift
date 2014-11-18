@@ -3,7 +3,7 @@
 //  TinyanLibSwift
 //
 //  Created by Tinyan on 2014/09/11.
-//  Copyright (c) 2014年 bugnekosoft. All rights reserved.
+//  Copyright (c) 2014 bugnekosoft. All rights reserved.
 //
 
 import Foundation
@@ -13,19 +13,19 @@ import Foundation
 
 
 
-class CCommonUserData
+public class CCommonUserData
 {
 	var m_filename : String?
 	var m_data  = [String : Int]()
 	var m_dataExistFlag = false
 	
-	init(filename : String)
+	public init(filename : String)
 	{
 		m_filename = filename
 	}
 	
 	
-	func addName(name : String)
+	public func addName(name : String)
 	{
 		if m_data[name] != nil
 		{
@@ -34,7 +34,7 @@ class CCommonUserData
 	}
 	
 	
-	func addNames(names : [String])
+	public func addNames(names : [String])
 	{
 		for name in names
 		{
@@ -43,31 +43,47 @@ class CCommonUserData
 	}
 	
 	
-	func loadData() -> Bool
+	public func loadData() -> Bool
 	{
 
 		let paths = NSSearchPathForDirectoriesInDomains(.LibraryDirectory , .UserDomainMask,true)
+//		let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory , .UserDomainMask,true)[0] as String
+		
+	//	NSLog("loaddata:")
+		NSLog(paths[0] as String)
+		
 		
 		if let path = paths[0] as? String
 		{
-			var fullfilename = path + "/" + m_filename!
-			let data = NSKeyedUnarchiver.unarchiveObjectWithFile(fullfilename) as [String : Int]
 			
-			for (key,value) in data
+	//		NSLog("loaddata2:")
+			
+			var fullfilename = path + "/" + m_filename!
+
+			if NSFileManager.defaultManager().fileExistsAtPath(fullfilename)
 			{
-				m_data[key] = value
+			
+				let data = NSKeyedUnarchiver.unarchiveObjectWithFile(fullfilename) as [String : Int]
+			
+			//	NSLog("loaddata3:")
+			
+				for (key,value) in data
+				{
+					m_data[key] = value
+				}
+				m_dataExistFlag = true
+				return true
 			}
-			m_dataExistFlag = true
-			return true
 		}
 	
 		return false
 	}
 	
-	func saveData() -> Bool
+	public func saveData() -> Bool
 	{
 		let paths = NSSearchPathForDirectoriesInDomains(.LibraryDirectory , .UserDomainMask,true)
-		
+//		let paths : [AnyObject] = NSSearchPathForDirectoriesInDomains(.DocumentDirectory , .UserDomainMask,true)
+
 		if let path = paths[0] as? String
 		{
 			var fullfilename = path + "/" + m_filename!
@@ -78,7 +94,7 @@ class CCommonUserData
 		return false
 	}
 	
-	func getData(name : String) -> Int
+	public func getData(name : String) -> Int
 	{
 		if (m_data[name] != nil)
 		{
@@ -89,13 +105,13 @@ class CCommonUserData
 	}
 	
 	
-	func setData(name : String , data : Int)
+	public func setData(name : String , data : Int)
 	{
 		m_data[name] = data
 	}
 	
 	
-	func getBoolData(name : String) -> Bool
+	public func getBoolData(name : String) -> Bool
 	{
 		var d = self.getData(name)
 		if d == 0
@@ -105,7 +121,7 @@ class CCommonUserData
 		return true
 	}
 	
-	func setBoolData(name : String , flag : Bool)
+	public func setBoolData(name : String , flag : Bool)
 	{
 		if flag
 		{

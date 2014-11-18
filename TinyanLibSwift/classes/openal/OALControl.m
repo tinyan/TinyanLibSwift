@@ -2,7 +2,7 @@
 //  OALControl.m
 //  TinyanLib
 //
-//  Created by たいにゃん on 10/05/15.
+//  Created by Tinyan on 10/05/15.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
@@ -52,11 +52,11 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 			// 作ったコンテキストをアクティブにする
 			alcMakeContextCurrent(context);
 		} else {
-			NSLog(@"Failed to create a new OpenAL Context");
+		//	NSLog(@"Failed to create a new OpenAL Context");
 			return NO;
 		}
 	} else {
-		NSLog(@"Failed to create a new OpenAL Device");
+	//	NSLog(@"Failed to create a new OpenAL Device");
 		return NO;
 	}
 	
@@ -67,7 +67,7 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	[self setListenerPosition: 0 : 0 : 0];
 	[self setListenerFace: 0 : 1 : 0 up: 0 : 0 : 1];
 #ifdef DEBUG	
-	NSLog(@"Init Done");
+	//NSLog(@"Init Done");
 #endif
 	return YES;
 }

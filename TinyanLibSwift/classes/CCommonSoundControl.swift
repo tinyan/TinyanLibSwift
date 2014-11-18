@@ -2,8 +2,8 @@
 //  CCommonSoundControl.swift
 //  TinyanLibSwift
 //
-//  Created by たいにゃん on 2014/08/24.
-//  Copyright (c) 2014年 bugnekosoft. All rights reserved.
+//  Created by Tinyan on 2014/08/24.
+//  Copyright (c) 2014 bugnekosoft. All rights reserved.
 //
 
 import Foundation

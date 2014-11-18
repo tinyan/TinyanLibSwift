@@ -2,8 +2,8 @@
 //  CGameCallback.swift
 //  colors
 //
-//  Created by たいにゃん on 2014/08/18.
-//  Copyright (c) 2014年 bugnekosoft. All rights reserved.
+//  Created by Tinyan on 2014/08/18.
+//  Copyright (c) 2014 bugnekosoft. All rights reserved.
 //
 
 import Foundation
@@ -21,13 +21,19 @@ public class CCommonGame
 	public var m_general = [CCommonGeneral?](count: 256, repeatedValue: nil)
 	//	var m_general = [GameScene?](count: 256, repeatedValue: nil)
 	public var m_viewController : CCommonViewController
-	var m_soundControl : CCommonSoundControl?
+	public var m_soundControl : CCommonSoundControl?
 	
 	var m_active = true
 	var m_iAd = false
 	var m_inGamecenter = false
 
-	var m_gamecenterControl : CCommonGamecenterDataControl? = nil
+	public var m_gamecenterControl : CCommonGamecenterDataControl? = nil
+	
+	
+	var m_userHighScoreData : CCommonUserData? = nil
+	var m_userAchievementData : CCommonUserData? = nil
+	
+	
 	
 	public init(viewController:CCommonViewController)
 	{
@@ -44,17 +50,17 @@ public class CCommonGame
 	{
 		if let old = m_general[m_mode]
 		{
-			NSLog("finalexit")
+	//		NSLog("finalexit")
 			old.ExitMode()
 		}
 		
-		NSLog("first")
+	//	NSLog("first")
 		m_mode = newMode
 		if let general = m_general[m_mode]
 		{
 			general.EnterMode()
 			
-			NSLog("second")
+	//		NSLog("second")
 			let skView = m_viewController.view as SKView
 			
 			let transition = SKTransition.crossFadeWithDuration(0.1)
@@ -68,7 +74,7 @@ public class CCommonGame
 		/* Called before each frame is rendered */
 	}
 	
-	func checkActive() -> Bool
+	public func checkActive() -> Bool
 	{
 		if !m_active || m_iAd || m_inGamecenter
 		{
@@ -78,13 +84,22 @@ public class CCommonGame
 	}
 	
 	
-	func onActive(flag : Bool)
+	public func onActive(flag : Bool)
 	{
 		m_active = flag;
 	}
 	
-	func inGameCenter(flag: Bool)
+	public func inGameCenter(flag: Bool)
 	{
+		if flag
+		{
+	//		NSLog("in game center true")
+		}
+		else
+		{
+	//		NSLog("in game center false")
+		}
+		
 		m_inGamecenter = flag;
 	}
 	
@@ -189,7 +204,8 @@ public class CCommonGame
 			{
 				() in
 				self.inGameCenter(true)
-		})
+			}
+		)
 	}
 	
 	
@@ -204,7 +220,21 @@ public class CCommonGame
 			{
 				() in
 				self.inGameCenter(true)
-			})
+			}
+		)
 	}
-	
+
+	public func createCommonHighscoreAndAchievement(#highscoreNameList:[String] , achievementNameList:[String])
+	{
+		m_gamecenterControl?.addIdentifiers(highscoreNameList, scoreTypeFlag: true)
+		m_gamecenterControl?.addIdentifiers(achievementNameList, scoreTypeFlag: false)
+		
+		m_userHighScoreData = CCommonUserData(filename: "userHighscore.dat")
+		m_userHighScoreData?.addNames(highscoreNameList)
+		m_userHighScoreData?.loadData()
+		
+		m_userAchievementData = CCommonUserData(filename: "userAchievement.dat")
+		m_userAchievementData?.addNames(achievementNameList)
+		m_userAchievementData?.loadData()
+	}
 }

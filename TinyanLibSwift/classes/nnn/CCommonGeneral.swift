@@ -2,8 +2,8 @@
 //  CCommonGeneral.swift
 //  colors
 //
-//  Created by たいにゃん on 2014/08/11.
-//  Copyright (c) 2014年 bugnekosoft. All rights reserved.
+//  Created by Tinyan on 2014/08/11.
+//  Copyright (c) 2014 bugnekosoft. All rights reserved.
 //
 
 import Foundation
@@ -28,23 +28,11 @@ public class CCommonGeneral : SKScene
 	}
 	
 	
-	//	init(game:CGame)
-	
-	/*
-	//	convenience required init(coder aDecoder: NSCoder!) {
-	//		self.init(coder: aDecoder)
-	//	}
-	required init(coder aDecoder: NSCoder!) {
-	super.init(coder: aDecoder);
-	//self.init(coder: aDecoder)
-	}
-	*/
-	
-	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder);
 		//self.init(coder: aDecoder)
 	}
+	
 	
 	
 	public var m_game : CCommonGame?
@@ -54,6 +42,7 @@ public class CCommonGeneral : SKScene
 	{
 		//var size = CGSizeMake(600,400)
 		super.init(size: size)
+		self.backgroundColor = UIColor(red: 0.5, green: 0.8, blue: 0.3, alpha: 1.0)
 		//		super.init(fileNamed: "GameScene")
 		m_game = game
 		scaleMode = .AspectFill
@@ -61,13 +50,13 @@ public class CCommonGeneral : SKScene
 	
 	public func ExitMode()
 	{
-		NSLog("general:ExitMode()")
+//		NSLog("general:ExitMode()")
 	}
 	
 	
 	public func EnterMode()
 	{
-		NSLog("general:EnterMode()")
+//		NSLog("general:EnterMode()")
 		
 	}
 	
@@ -83,7 +72,7 @@ public class CCommonGeneral : SKScene
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self)
 			
-			NSLog("touch %f %f",Float(location.x),Float(location.y));
+	//		NSLog("touch %f %f",Float(location.x),Float(location.y));
 		}
 	}
 	
@@ -103,6 +92,7 @@ public class CCommonGeneral : SKScene
 		}
 	}
 
+	
 	//dummy routine
 	public func onTouchesBegan(touches: NSSet, withEvent event: UIEvent)
 	{
