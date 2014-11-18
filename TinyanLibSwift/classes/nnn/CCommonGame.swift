@@ -46,6 +46,7 @@ public class CCommonGame
 	}
 	
 	
+	
 	public func changeMode(newMode : Int)
 	{
 		if let old = m_general[m_mode]
