@@ -9,9 +9,9 @@
 #import "OALControl.h"
 #import "OAL3DVector.h"
 
-#define		DEFAULT_VOLUME	 1.0		// デフォルトのボチューム
+#define		DEFAULT_VOLUME	 1.0
 
-// オーディオデータをロードするための関数
+//
 void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDataSize, ALenum *outDataFormat, ALsizei*	outSampleRate);
 
 
@@ -41,15 +41,10 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	ALCcontext		*context	= NULL;
 	ALCdevice		*device		= NULL;
 	
-	// 新しいOpenALのデバイスを開く
-	// 引数NULLはデフォルトの音声出力を使うことを意味する
 	device = alcOpenDevice(NULL);
 	if (device != NULL){
-		// OpenALコンテキストを作る
-		// 上で作ったOpenALデバイスに出力される (二つ目の引数でコンテキストの属性を指定する)
 		context = alcCreateContext(device, 0);
 		if (context != NULL){
-			// 作ったコンテキストをアクティブにする
 			alcMakeContextCurrent(context);
 		} else {
 		//	NSLog(@"Failed to create a new OpenAL Context");
@@ -63,7 +58,6 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	// Clear Error Code 
 	alGetError();
 	
-	// リスナーの位置と方向を設定する。
 	[self setListenerPosition: 0 : 0 : 0];
 	[self setListenerFace: 0 : 1 : 0 up: 0 : 0 : 1];
 #ifdef DEBUG	

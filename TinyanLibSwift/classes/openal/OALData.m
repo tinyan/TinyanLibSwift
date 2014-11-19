@@ -12,9 +12,9 @@
 
 
 
-#define		DEFAULT_VOLUME	 1.0		// デフォルトのボチューム
+#define		DEFAULT_VOLUME	 1.0
 
-// オーディオデータをロードするための関数
+
 void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDataSize, ALenum *outDataFormat, ALsizei*	outSampleRate);
 
 @implementation OALData
@@ -24,19 +24,19 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 @dynamic	velocity;
 @dynamic	direction;
 
-// 初期化のみ
+
 - (id) init
 {
 	self = [super init];
 	if (self != nil) {
-		// モデルをretainする
+
 //		model		= [[OALModel defaultInstance] retain];
 //		if (model == nil) {
 //			NSLog(@"Error: No valid OALModel available.");
 //			return nil;
 //		}
 		
-		// 位置、速度、向きなどのベクトル
+
 		position	= [[OAL3DVector alloc] init];
 		velocity	= [[OAL3DVector alloc] init];
 		direction	= [[OAL3DVector alloc] init];
@@ -44,21 +44,21 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	return self;
 }
 
-// 初期化してファイルをロードする
+
 - (id) initWithFile: (NSString *) filename ofType: (NSString *) extension
 {
-	self	= [self init]; // 上のイニシャライザを呼び出している
+	self	= [self init];
 	if (self != nil) {		
-		// ファイルのロード
+
 		[self loadFile: filename ofType: extension];
 		
-		// デフォルトのボリュームのセット
+
 		[self setVolume: DEFAULT_VOLUME];
 	}
 	return self;
 }
 
-// サウンドファイルのロード
+
 - (void) loadFile: (NSString *) filename ofType: (NSString *) extension
 {
 	char*	alBuffer;            //data for the buffer
@@ -66,7 +66,7 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	ALsizei alFreqBuffer;      //for the frequency of the buffer
 	ALsizei alBufferLen;          //the bit depth
 	
-	// サウンドファイルのデータをロードする (WAVファイルから)
+
 	NSString* path		= [[NSBundle mainBundle] pathForResource: filename ofType: extension];
 	if (path == nil){
 //		NSLog(@"Error: No Sound named %@.%@ found", filename, extension);
@@ -80,13 +80,13 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	CFRelease(fileURL);
 	if (alBuffer == NULL) return;
 	
-	// 音源を作成
+
 	alGenSources(1, &alSourceID);
 	
-	// bufferを生成
+
 	alGenBuffers(1, &alBufferID);
 	
-	// データをbufferにロード
+
 	alBufferData(alBufferID, alFormatBuffer, alBuffer, alBufferLen, alFreqBuffer);
 	ALenum err = alGetError();
 	if (err == AL_OUT_OF_MEMORY)
@@ -98,16 +98,16 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 		//NSLog(@"Error: AL_INVALID_VALUE");
 	}
 	
-	// bufferをsourceに対応づける
+
 	alSourcei(alSourceID, AL_BUFFER, alBufferID);
 	
-	// 基準となる距離を設定
+
 	alSourcef(alSourceID, AL_REFERENCE_DISTANCE, 25.0f);
 	
-	// 原点に配置する
+
 	[self setPosition: 0 : 0 : 0];
 	
-	// ロード終了のフラグをたてる
+
 	isLoaded	= YES;
 }
 
@@ -115,17 +115,17 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 - (void) dealloc
 {	
 	if (isLoaded){
-		// 再生中止
+
 		alSourceStop(alSourceID);
 		
-		// 音源を消去
+
 		alDeleteSources(1, &alSourceID);
 		
-		// バッファーを消去
+
 		alDeleteBuffers(1, &alBufferID);
 	}
 	
-	// 他のメモリをリリース
+
 	//[model release];
 //	[position release];
 //	[velocity release];
@@ -136,15 +136,15 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 
 
 #pragma mark 
-#pragma mark 位置、速度、向き
+#pragma mark pos spd vec
 
-// 位置
+
 
 - (void) setPosition: (float) x : (float) y : (float) z
 {
 	[position set: x : y: z];
 	
-	// 音源位置をセットする
+
 	alSource3f(alSourceID, AL_POSITION, x, y, z);
 }
 
@@ -155,7 +155,7 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 
 - (OAL3DVector *) position { return position; }
 
-// 速度
+
 
 - (void) setVelocity: (float) x : (float) y : (float) z
 {
@@ -172,7 +172,7 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 - (OAL3DVector *) velocity { return velocity; }
 
 
-// 向き
+
 - (void) setDirection: (OAL3DVector *) vector
 {
 	[self setDirection: vector.x : vector.y : vector.z];
@@ -188,7 +188,7 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 - (OAL3DVector *) direction { return direction; }
 
 #pragma mark 
-#pragma mark 再生の制御
+#pragma mark control soundout
 
 - (void) play {
 	alSourcePlay(alSourceID);	
@@ -233,7 +233,7 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 }
 
 #pragma mark
-#pragma mark その他
+#pragma mark etc
 
 - (void) setReferenceDistance: (float) dist
 {
@@ -246,8 +246,7 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 @end
 
 
-// サウンドデータの取り出し 
-// Appleのサンプルから
+
 void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDataSize, ALenum *outDataFormat, ALsizei*	outSampleRate)
 {
 	OSStatus						err = noErr;	
@@ -370,4 +369,5 @@ Exit:
 	if (audioFileID) AudioFileClose(audioFileID);
 	return theData;
 }
+
 

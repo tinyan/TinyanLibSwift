@@ -55,7 +55,7 @@
 - (void) normalize
 {
 	float sum = 0.0;
-	for (int i=0;i<3;i++)
+	for (int i = 0;i <3 ;i++)
 	{
 		sum += m_vec[i] * m_vec[i];
 	}
@@ -118,19 +118,19 @@
 - (void) add: (OAL3DVector *) vector
 {
 	int i;
-	for (i=0; i<3; i++) m_vec[i] += vector.vec[i];
+	for (i = 0; i < 3; i++) m_vec[i] += vector.vec[i];
 }
 
 - (void) sub: (OAL3DVector *) vector
 {
 	int i;
-	for (i=0; i<3; i++) m_vec[i] -= vector.vec[i];
+	for (i = 0; i < 3; i++) m_vec[i] -= vector.vec[i];
 }
 
 - (void) mul: (float) m
 {
 	int i;
-	for (i=0; i<3; i++) m_vec[i] *= m;
+	for (i = 0; i < 3; i++) m_vec[i] *= m;
 }	
 
 - (void) scaleTo: (float) scale
@@ -143,7 +143,7 @@
 {
 	int i;
 	float sum = 0.0;
-	for (i=0; i<3; i++) sum += m_vec[i] * m_vec[i];
+	for (i = 0; i < 3; i++) sum += m_vec[i] * m_vec[i];
 	return sqrt(sum);
 }
 

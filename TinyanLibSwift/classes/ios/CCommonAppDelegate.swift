@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 //@UIApplicationMain
 public class CCommonAppDelegate: UIResponder , UIApplicationDelegate{
 	

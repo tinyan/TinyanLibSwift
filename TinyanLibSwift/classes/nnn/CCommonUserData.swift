@@ -43,6 +43,7 @@ public class CCommonUserData
 	}
 	
 	
+	
 	public func loadData() -> Bool
 	{
 
@@ -50,7 +51,7 @@ public class CCommonUserData
 //		let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory , .UserDomainMask,true)[0] as String
 		
 	//	NSLog("loaddata:")
-		NSLog(paths[0] as String)
+	//	NSLog(paths[0] as String)
 		
 		
 		if let path = paths[0] as? String

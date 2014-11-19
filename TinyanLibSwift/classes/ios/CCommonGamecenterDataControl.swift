@@ -31,7 +31,7 @@ public class CCommonGamecenterDataControl
 	
 	public init()
 	{
-		for i in 0..<GAMECENTER_DATA_MAX
+		for i in 0 ..< GAMECENTER_DATA_MAX
 		{
 			m_identifier[i] = nil
 			m_scoreTypeFlag[i] = false
@@ -195,7 +195,7 @@ public class CCommonGamecenterDataControl
 				}
 				else
 				{
-					for i in 0..<self.m_number
+					for i in 0 ..< self.m_number
 					{
 						if self.m_identifier[i] != nil
 						{
@@ -246,7 +246,7 @@ public class CCommonGamecenterDataControl
 	
 	public func searchIdentifier(identifier : String) -> Int?
 	{
-		for i in 0..<m_number
+		for i in 0 ..< m_number
 		{
 			if m_identifier[i] != nil
 			{

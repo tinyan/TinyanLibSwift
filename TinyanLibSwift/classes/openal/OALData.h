@@ -18,14 +18,14 @@
 @interface OALData : NSObject {
 	//OALModel	*model;
 	
-	OAL3DVector	*position;			// 位置
-	OAL3DVector	*velocity;			// 速度
-	OAL3DVector	*direction;			// 向き
+	OAL3DVector	*position;
+	OAL3DVector	*velocity;
+	OAL3DVector	*direction;
 	
-	unsigned int	alSourceID;		// 音源ID (OpenAL)
-	unsigned int	alBufferID;		// バッファーID (OpenAL)
+	unsigned int	alSourceID;
+	unsigned int	alBufferID;
 	
-	BOOL			isLoaded;		// サウンドファイルがロードされているかどうか
+	BOOL			isLoaded;		
 }
 
 @property (readonly) BOOL isLoaded;
