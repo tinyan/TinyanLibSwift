@@ -30,11 +30,6 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	self = [super init];
 	if (self != nil) {
 
-//		model		= [[OALModel defaultInstance] retain];
-//		if (model == nil) {
-//			NSLog(@"Error: No valid OALModel available.");
-//			return nil;
-//		}
 		
 
 		position	= [[OAL3DVector alloc] init];
@@ -69,8 +64,6 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 
 	NSString* path		= [[NSBundle mainBundle] pathForResource: filename ofType: extension];
 	if (path == nil){
-//		NSLog(@"Error: No Sound named %@.%@ found", filename, extension);
-//		println("Error: No Sound named \(filename).\(extenshon)");
 		return;
 	}
 	
@@ -91,11 +84,9 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	ALenum err = alGetError();
 	if (err == AL_OUT_OF_MEMORY)
 	{
-	//	NSLog(@"Error: AL_OUT_OF_MEMORY");
 	}
 	else if (err == AL_INVALID_VALUE)
 	{
-		//NSLog(@"Error: AL_INVALID_VALUE");
 	}
 	
 
@@ -126,17 +117,9 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	}
 	
 
-	//[model release];
-//	[position release];
-//	[velocity release];
-//	[direction release];
-	
-//	[super dealloc];
 }
 
 
-#pragma mark 
-#pragma mark pos spd vec
 
 
 
@@ -187,8 +170,6 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 
 - (OAL3DVector *) direction { return direction; }
 
-#pragma mark 
-#pragma mark control soundout
 
 - (void) play {
 	alSourcePlay(alSourceID);	
@@ -232,8 +213,6 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	return (float)vol;
 }
 
-#pragma mark
-#pragma mark etc
 
 - (void) setReferenceDistance: (float) dist
 {
@@ -285,8 +264,6 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	
 	int channel = fileFormat.mChannelsPerFrame;
 	int bitsPerChannel = fileFormat.mBitsPerChannel;
-//	int framesPerPacker = fileFormat.mFramesPerPacket;
-//	NSLog(@"foramt:%d %d %d",channel,bitsPerChannel,framesPerPacker);
 	
 	// Set the client format to 16 bit signed integer (native-endian) data
 	// Maintain the channel count and sample rate of the original source format
@@ -294,16 +271,12 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	outputFormat.mChannelsPerFrame = channel;
 	
 	outputFormat.mFormatID = kAudioFormatLinearPCM;
-//	NSLog(@"formatID:%d %d",	fileFormat.mFormatID , kAudioFormatLinearPCM);
 	outputFormat.mBytesPerPacket = (bitsPerChannel / 8) * channel;
-//	NSLog(@"pack:%d %d",outputFormat.mBytesPerPacket,fileFormat.mBytesPerPacket);
 	outputFormat.mFramesPerPacket = 1;
-//	NSLog(@"frameperpack:%d %d",outputFormat.mFramesPerPacket,fileFormat.mFramesPerPacket);
 	
 	outputFormat.mBytesPerFrame = (bitsPerChannel / 8) * channel;
 	outputFormat.mBitsPerChannel = bitsPerChannel;
 	outputFormat.mFormatFlags = fileFormat.mFormatFlags;
-//	NSLog(@"formatFlag:%d %d",	outputFormat.mFormatFlags , kAudioFormatFlagsNativeEndian | kAudioFormatFlagIsPacked | kAudioFormatFlagIsSignedInteger);
 	
 	//outputFormat.mFormatFlags = kAudioFormatFlagsNativeEndian | kAudioFormatFlagIsPacked | kAudioFormatFlagIsSignedInteger;
 	
@@ -319,7 +292,6 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	
 	// Read all the data into memory
 	UInt32		dataSize	= (UInt32)(fileLengthInFrames * outputFormat.mBytesPerFrame);
-//	NSLog(@"dataSize=%d",(int)dataSize);
 	theData					= malloc(dataSize);
 	if (theData)
 	{

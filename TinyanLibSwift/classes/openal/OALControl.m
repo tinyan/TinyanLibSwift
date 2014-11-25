@@ -11,7 +11,6 @@
 
 #define		DEFAULT_VOLUME	 1.0
 
-//
 void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDataSize, ALenum *outDataFormat, ALsizei*	outSampleRate);
 
 
@@ -47,22 +46,16 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 		if (context != NULL){
 			alcMakeContextCurrent(context);
 		} else {
-		//	NSLog(@"Failed to create a new OpenAL Context");
 			return NO;
 		}
 	} else {
-	//	NSLog(@"Failed to create a new OpenAL Device");
 		return NO;
 	}
 	
-	// Clear Error Code 
 	alGetError();
 	
 	[self setListenerPosition: 0 : 0 : 0];
 	[self setListenerFace: 0 : 1 : 0 up: 0 : 0 : 1];
-#ifdef DEBUG	
-	//NSLog(@"Init Done");
-#endif
 	return YES;
 }
 
@@ -71,7 +64,6 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 {
 	[listenerPos	set: x : y : z];
 	
-	//set current listener position
 	alListener3f(AL_POSITION, x, y, z);
 }
 
@@ -79,7 +71,6 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 {
 	[listenerPos	set: vec];
 	
-	//set current listener position
 	alListenerfv(AL_POSITION, listenerPos.vec);
 }
 
@@ -115,7 +106,6 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	vec[4] = up.y;		//up vector y value
 	vec[5] = up.z;		//up vector z value
 	
-	//set current listener orientation
 	alListenerfv(AL_ORIENTATION, vec);
 }
 
@@ -125,7 +115,6 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 	[face scaleTo: dist];
 	[listenerPos add: face];	
 	[self setListenerPosition: listenerPos];
-//	[face release];
 }
 
 - (void) rotateListener: (float) degree
@@ -138,23 +127,16 @@ void* GetOpenALAudioData(CFURLRef inFileURL, NSString* extension,ALsizei *outDat
 
 - (void) dealloc
 {
-	//Get active context
 	ALCcontext *Context = alcGetCurrentContext();
 	
-	//Get device for active context
 	ALCdevice *Device = alcGetContextsDevice(Context);
 	
-	//Disable context
 	alcMakeContextCurrent(NULL);
 	
-	//Release context(s)
 	alcDestroyContext(Context);
 	
-	//Close device
 	alcCloseDevice(Device);
 	
-//	[listenerPos release]; [listenerFace release]; [listenerUp release];
-//	[super dealloc];
 }
 
 

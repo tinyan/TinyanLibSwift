@@ -19,13 +19,14 @@ public class CCommonGame
 {
 	public var m_mode = 0
 	public var m_general = [CCommonGeneral?](count: 256, repeatedValue: nil)
-	//	var m_general = [GameScene?](count: 256, repeatedValue: nil)
 	public var m_viewController : CCommonViewController
 	public var m_soundControl : CCommonSoundControl?
 	
 	var m_active = true
 	var m_iAd = false
 	var m_inGamecenter = false
+	public var m_soundFlag = true
+	public var m_gamecenterFlag = false
 
 	public var m_gamecenterControl : CCommonGamecenterDataControl? = nil
 	
@@ -51,17 +52,13 @@ public class CCommonGame
 	{
 		if let old = m_general[m_mode]
 		{
-	//		NSLog("finalexit")
 			old.ExitMode()
 		}
 		
-	//	NSLog("first")
 		m_mode = newMode
 		if let general = m_general[m_mode]
 		{
 			general.EnterMode()
-			
-	//		NSLog("second")
 			let skView = m_viewController.view as SKView
 			
 			let transition = SKTransition.crossFadeWithDuration(0.1)
@@ -71,8 +68,6 @@ public class CCommonGame
 	
 	public func onUpdate(currentTime: CFTimeInterval)
 	{
-		//	NSLog("update gamecallback")
-		/* Called before each frame is rendered */
 	}
 	
 	public func checkActive() -> Bool
@@ -87,31 +82,60 @@ public class CCommonGame
 	
 	public func onActive(flag : Bool)
 	{
-		m_active = flag;
+		m_active = flag
 	}
 	
 	public func inGameCenter(flag: Bool)
 	{
 		if flag
 		{
-	//		NSLog("in game center true")
 		}
 		else
 		{
-	//		NSLog("in game center false")
 		}
 		
-		m_inGamecenter = flag;
+		m_inGamecenter = flag
 	}
 	
 	func oniAd(flag : Bool)
 	{
-		m_iAd = flag;
+		m_iAd = flag
 	}
 	
 	public func getSoundControl() -> CCommonSoundControl
 	{
 		return m_soundControl!
+	}
+	
+	public func playSound(n:Int)
+	{
+		if let soundControl = m_soundControl
+		{
+			if m_soundFlag
+			{
+				soundControl.play(n)
+			}
+		}
+	}
+	
+	public func getSoundFlag() -> Bool
+	{
+		return m_soundFlag
+	}
+
+	public func setSoundFlag(flag:Bool)
+	{
+		m_soundFlag = flag
+	}
+	
+	public func getGamecenterFlag() -> Bool
+	{
+		return m_gamecenterFlag
+	}
+	
+	public func setGamecenterFlag(flag:Bool)
+	{
+		m_gamecenterFlag = flag
 	}
 	
 	public func reportAchievement(percent:Double , identifier : String , popup : Bool)

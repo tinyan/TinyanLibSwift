@@ -38,7 +38,7 @@ class CCommonBannerViewController : CCommonViewController , ADBannerViewDelegate
 		
 		m_banner?.hidden = true
 		self.view.addSubview(m_banner!)
-		m_banner?.delegate = self;
+		m_banner?.delegate = self
 		
 		
 		

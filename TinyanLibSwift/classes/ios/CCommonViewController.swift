@@ -1,6 +1,5 @@
 //
 //  GameViewController.swift
-//  colors
 //
 //  Created by Tinyan on 2014/08/11.
 //  Copyright (c) 2014 bugnekosoft. All rights reserved.
@@ -46,7 +45,6 @@ public class CCommonViewController: UIViewController , GKGameCenterControllerDel
 	}
 	
 	//
-	//6以降はよばれない,かわりに
 	//-(NSUInteger)supportedInterfaceOrientations
 	//
 	/*

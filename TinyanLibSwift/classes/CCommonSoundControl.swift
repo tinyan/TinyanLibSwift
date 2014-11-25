@@ -10,6 +10,7 @@ import Foundation
 
 
 
+
 let MY_OAL_SOUND_MAX = 256
 
 public class CCommonSoundControl
@@ -28,6 +29,11 @@ public class CCommonSoundControl
 	public func loadAiff(n : Int , name : String) -> Bool
 	{
 		return self.load(n , name:name , ofType:"aiff")
+	}
+
+	public func loadWave(n : Int , name : String) -> Bool
+	{
+		return self.load(n , name:name , ofType:"wav")
 	}
 	
 	public func load(n : Int , name : String , ofType : String) -> Bool

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-//import UIKit
 
 
 
@@ -48,16 +47,10 @@ public class CCommonUserData
 	{
 
 		let paths = NSSearchPathForDirectoriesInDomains(.LibraryDirectory , .UserDomainMask,true)
-//		let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory , .UserDomainMask,true)[0] as String
-		
-	//	NSLog("loaddata:")
-	//	NSLog(paths[0] as String)
 		
 		
 		if let path = paths[0] as? String
 		{
-			
-	//		NSLog("loaddata2:")
 			
 			var fullfilename = path + "/" + m_filename!
 
@@ -66,7 +59,6 @@ public class CCommonUserData
 			
 				let data = NSKeyedUnarchiver.unarchiveObjectWithFile(fullfilename) as [String : Int]
 			
-			//	NSLog("loaddata3:")
 			
 				for (key,value) in data
 				{
@@ -83,7 +75,6 @@ public class CCommonUserData
 	public func saveData() -> Bool
 	{
 		let paths = NSSearchPathForDirectoriesInDomains(.LibraryDirectory , .UserDomainMask,true)
-//		let paths : [AnyObject] = NSSearchPathForDirectoriesInDomains(.DocumentDirectory , .UserDomainMask,true)
 
 		if let path = paths[0] as? String
 		{
@@ -136,10 +127,5 @@ public class CCommonUserData
 	
 	
 	
-//	func dmy()
-//	{
-//		var path = "aaa"
-//		NSKeyedArchiver.archiveRootObject(m_data, toFile: path)
-//	}
 	
 }

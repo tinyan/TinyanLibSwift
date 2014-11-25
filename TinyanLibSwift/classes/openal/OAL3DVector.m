@@ -12,11 +12,7 @@
 @implementation OAL3DVector
 
 
-//@synthesize x=m_x;
-//@synthesize y=m_y;
-//@synthesize z=m_z;
 @synthesize vec = m_vec;
-//@synthesize x,y,z;
 
 -(id)init
 {
@@ -151,7 +147,6 @@
 - (void) dealloc
 {
 	free(m_vec);
-//	[super dealloc];
 }
 
 

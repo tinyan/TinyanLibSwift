@@ -12,14 +12,11 @@
 
 @interface OAL3DVector : NSObject 
 {
-//	float m_x,m_y,m_z;
 	float* m_vec;
     float x,y,z;
 }
 
-//@property float x,y,z;
 @property float* vec;
-//@property float x,y,z;
 
 
 - (id) init;

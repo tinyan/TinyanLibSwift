@@ -9,86 +9,73 @@
 import Foundation
 import SpriteKit
 
-
-
-
 public class CCommonGeneral : SKScene
 {
-	
-	
 	override public func didMoveToView(view: SKView)
 	{
-		/* Setup your scene here */
-		//		let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-		//		myLabel.text = "Hello, World!";
-		//		myLabel.fontSize = 65;
-		//		myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-		
-		//		self.addChild(myLabel)
 	}
 	
 	
-	required public init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder);
-		//self.init(coder: aDecoder)
-	}
-	
-	
-	
-	public var m_game : CCommonGame?
-	
-	
-	public init(game : CCommonGame, size:CGSize)
+	convenience required public init(coder aDecoder: NSCoder)
 	{
-		//var size = CGSizeMake(600,400)
-		super.init(size: size)
-		self.backgroundColor = UIColor(red: 0.5, green: 0.8, blue: 0.3, alpha: 1.0)
-		//		super.init(fileNamed: "GameScene")
+		self.init(coder:aDecoder)
+	}
+	
+	
+	public var m_game : CCommonGame
+	public var m_modeNumber:Int
+	
+	public init(modeNumber:Int , game : CCommonGame, size:CGSize)
+	{
 		m_game = game
+		m_modeNumber = modeNumber
+		
+		super.init(size: size)
+		
+		self.backgroundColor = UIColor(red: 0.5, green: 0.8, blue: 0.3, alpha: 1.0)
 		scaleMode = .AspectFill
 	}
 	
 	public func ExitMode()
 	{
-//		NSLog("general:ExitMode()")
 	}
 	
 	
 	public func EnterMode()
 	{
-//		NSLog("general:EnterMode()")
 		
 	}
 	
 	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
 	{
-		if m_game!.checkActive()
+		if m_game.checkActive()
 		{
-			onTouchesBegan(touches, withEvent: event)
-		}
-		
-		/* Called when a touch begins */
-		
-		for touch: AnyObject in touches {
-			let location = touch.locationInNode(self)
-			
-	//		NSLog("touch %f %f",Float(location.x),Float(location.y));
+			if m_modeNumber == m_game.m_mode
+			{
+				onTouchesBegan(touches, withEvent: event)
+			}
 		}
 	}
 	
 	override public func touchesMoved(touches: NSSet, withEvent event: UIEvent)
 	{
-		if m_game!.checkActive()
+		if m_game.checkActive()
 		{
-			onTouchesMoved(touches, withEvent: event)
+			if m_modeNumber == m_game.m_mode
+			{
+				onTouchesMoved(touches, withEvent: event)
+			}
 		}
 	}
 	
 	override public func touchesEnded(touches: NSSet, withEvent event: UIEvent)
 	{
-		if m_game!.checkActive()
+		if m_game.checkActive()
 		{
-			onTouchesEnded(touches, withEvent: event)
+			if m_modeNumber == m_game.m_mode
+			{
+				onTouchesEnded(touches, withEvent: event)
+			}
 		}
 	}
 
@@ -96,25 +83,32 @@ public class CCommonGeneral : SKScene
 	//dummy routine
 	public func onTouchesBegan(touches: NSSet, withEvent event: UIEvent)
 	{
+		
 	}
+	
 	public func onTouchesMoved(touches: NSSet, withEvent event: UIEvent)
 	{
+		
 	}
+	
 	public func onTouchesEnded(touches: NSSet, withEvent event: UIEvent)
 	{
+		
 	}
 
 	
 	override public func update(currentTime: CFTimeInterval)
 	{
-		if m_game!.checkActive()
+		if m_game.checkActive()
 		{
-			m_game?.onUpdate(currentTime)
-			onUpdate(currentTime)
+			m_game.onUpdate(currentTime)
+			
+			if m_modeNumber == m_game.m_mode
+			{
+				onUpdate(currentTime)
+			}
 		}
 		
-		//	NSLog("update general")
-		/* Called before each frame is rendered */
 	}
 	
 	//dummy

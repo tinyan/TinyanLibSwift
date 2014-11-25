@@ -52,41 +52,28 @@ public class CCommonGamecenterDataControl
 //		println("authenticateLocalPlayer:1")
 		if !m_gamecenterEnableFlag
 		{
-			return;
+			return
 		}
 		
 		localPlayer = GKLocalPlayer.localPlayer()
 		
-	//	NSLog("authenticateLocalPlayer:2")
 		localPlayer?.authenticateHandler =
 		{
 			(viewController : UIViewController!,error : NSError!) in
 			
-		//	NSLog("authenticateLocalPlayer:3")
 			
 			if viewController != nil
 			{
-		//		NSLog("authenticateLocalPlayer:4-a")
-				
-				//		NSLog(@"game center view");
-				//			[self showAuthenticationDialogWhenReasonable: viewController];
 				UIApplication.sharedApplication().delegate?.window??.rootViewController?.presentViewController(viewController, animated: true,completion:nil)
 //				[[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:viewController animated:YES completion:nil];
 				
 			}
 			else if self.localPlayer!.authenticated
 			{
-		//		NSLog("authenticateLocalPlayer:4-b")
-				//		NSLog(@"found player");
-				//		[self authenticatedPlayer: localPlayer];
 				
 			}
 			else
 			{
-			//	NSLog("authenticateLocalPlayer:4-c")
-				
-				//		NSLog(@"error game center");
-				//		[self disableGameCenter];
 				
 			}
 			
@@ -103,7 +90,7 @@ public class CCommonGamecenterDataControl
 		m_identifier[m_number] = identifier
 		m_scoreTypeFlag[m_number] = scoreTypeFlag
 		
-		m_number++;
+		m_number++
 		return true
 	}
 	
@@ -252,7 +239,7 @@ public class CCommonGamecenterDataControl
 			{
 				if m_identifier[i]! == identifier
 				{
-					return i;
+					return i
 				}
 			}
 		}

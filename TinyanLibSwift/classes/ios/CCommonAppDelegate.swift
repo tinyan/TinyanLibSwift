@@ -9,7 +9,6 @@
 import UIKit
 
 
-//@UIApplicationMain
 public class CCommonAppDelegate: UIResponder , UIApplicationDelegate{
 	
 	public var window: UIWindow?
@@ -18,7 +17,7 @@ public class CCommonAppDelegate: UIResponder , UIApplicationDelegate{
 	public override init()
 	{
 		super.init()
-		m_game = nil;
+		m_game = nil
 	}
 	
 	public func setGame(lpGame : CCommonGame)
