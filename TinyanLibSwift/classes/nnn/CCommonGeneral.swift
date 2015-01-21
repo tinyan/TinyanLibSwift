@@ -78,7 +78,6 @@ public class CCommonGeneral : SKScene
 			}
 		}
 	}
-
 	
 	//dummy routine
 	public func onTouchesBegan(touches: NSSet, withEvent event: UIEvent)
@@ -115,5 +114,55 @@ public class CCommonGeneral : SKScene
 	public func onUpdate(currentTime: CFTimeInterval)
 	{
 	}
+	
+	
+	public func captureImage(imageSize:CGSize,aspectFit:Bool = true) -> UIImage
+	{
+		var rect = self.frame
+		
+		UIGraphicsBeginImageContextWithOptions(rect.size,false,UIScreen.mainScreen().scale)
+		if let view = self.view
+		{
+			view.drawViewHierarchyInRect(rect, afterScreenUpdates: true)
+		}
+		var image : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		
+		
+		var w = imageSize.width
+		var h = imageSize.height
+		var x : CGFloat = 0.0
+		var y : CGFloat = 0.0
+		
+		if aspectFit
+		{
+			var imageAspect = w / h
+			var aspect = rect.size.width / rect.size.height
+
+			if imageAspect >= aspect
+			{
+				h = w * aspect
+			}
+			else
+			{
+				w = h / aspect
+			}
+			
+			x = ( imageSize.width - w ) * 0.5
+			y = ( imageSize.height - h ) * 0.5
+		}
+		
+//		var w : CGFloat = 900.0 / 2.0
+//		var h : CGFloat = rect.size.height * (w / rect.size.width)
+		
+		UIGraphicsBeginImageContext(CGSize(width: imageSize.width, height: imageSize.height))
+		image.drawInRect(CGRect(x: x, y: y, width: w, height: h))
+		var image2 = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		return image2
+	}
+	
 	
 }

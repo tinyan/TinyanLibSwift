@@ -163,6 +163,7 @@ public class CCommonGamecenterDataControl
 	{
 		if !m_gamecenterEnableFlag || m_achievementLoadFlag || m_achievementLoadError || m_achievementLoadingFlag
 		{
+		//	println("aa")
 			return
 		}
 		
@@ -170,6 +171,7 @@ public class CCommonGamecenterDataControl
 		if GKLocalPlayer.localPlayer().authenticated
 		{
 			m_achievementLoadingFlag = true
+		//	println("bb")
 		
 			GKAchievement.loadAchievementsWithCompletionHandler({
 			
@@ -177,17 +179,24 @@ public class CCommonGamecenterDataControl
 
 				if (error != nil)
 				{
+				//	println("cc")
+					
 					self.m_achievementLoadError = true
 					self.m_achievementLoadingFlag = false
 				}
 				else
 				{
+				//	println("dd")
+					
 					for i in 0 ..< self.m_number
 					{
+					//	println("ee")
 						if self.m_identifier[i] != nil
 						{
+						//	println("ff")
 							if !self.m_scoreTypeFlag[i]
 							{
+							//	println("gg")
 								self.m_gamecenterDataExistFlag[i] = true
 							}
 						}

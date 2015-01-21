@@ -8,7 +8,7 @@
 import UIKit
 import SpriteKit
 import GameKit
-
+import Social
 
 public class CCommonViewController: UIViewController , GKGameCenterControllerDelegate , UINavigationControllerDelegate{
 	
@@ -75,7 +75,7 @@ public class CCommonViewController: UIViewController , GKGameCenterControllerDel
 	}
 	
 	
-	func showBanner(title:String , message:String)
+	public func showBanner(title:String , message:String)
 	{
 		GKNotificationBanner.showBannerWithTitle(title, message: message, completionHandler:
 			{() -> Void in }
@@ -110,4 +110,52 @@ public class CCommonViewController: UIViewController , GKGameCenterControllerDel
 	override public func prefersStatusBarHidden() -> Bool {
 		return true
 	}
+
+	public func checkTweetOk() -> Bool
+	{
+		return SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter)
+	}
+	
+	public func tweet(text:String , images:[UIImage] , urls:[NSURL])
+	{
+		if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter)
+		{
+			var viewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+			
+			
+			viewController.completionHandler =
+				{
+					(result:SLComposeViewControllerResult) -> Void in
+					
+					if result == SLComposeViewControllerResult.Done
+					{
+					//	println("Done")
+					}
+					
+					if result == SLComposeViewControllerResult.Cancelled
+					{
+					//	println("Cancel")
+					}
+					
+					self.dismissViewControllerAnimated(true, completion: nil)
+			}
+			
+			
+			viewController.setInitialText(text)
+			
+			for image in images
+			{
+				viewController.addImage(image)
+			}
+			
+			for url in urls
+			{
+				viewController.addURL(url)
+			}
+			
+			
+			self.presentViewController(viewController, animated: true, completion: nil)
+		}
+	}
+	
 }

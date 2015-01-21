@@ -42,7 +42,6 @@ public class CCommonUserData
 	}
 	
 	
-	
 	public func loadData() -> Bool
 	{
 
@@ -57,13 +56,24 @@ public class CCommonUserData
 			if NSFileManager.defaultManager().fileExistsAtPath(fullfilename)
 			{
 			
-				let data = NSKeyedUnarchiver.unarchiveObjectWithFile(fullfilename) as [String : Int]
+//				let data = NSKeyedUnarchiver.unarchiveObjectWithFile(fullfilename) as [String : Int]
+				let data = NSKeyedUnarchiver.unarchiveObjectWithFile(fullfilename) as [String]
 			
-			
-				for (key,value) in data
+				for i in 0 ..< data.count / 2
 				{
+					var key = data[i*2]
+					var value = data[i*2+1].toInt()
+					
+				//	println("loaduserdata \(key):\(data[i*2+1])")
 					m_data[key] = value
+					
 				}
+			
+//				for (key,value) in data
+//				{
+//					println("loaduserdata \(key):\(value)")
+//					m_data[key] = value
+//				}
 				m_dataExistFlag = true
 				return true
 			}
@@ -79,7 +89,16 @@ public class CCommonUserData
 		if let path = paths[0] as? String
 		{
 			var fullfilename = path + "/" + m_filename!
-			NSKeyedArchiver.archiveRootObject(m_data, toFile: fullfilename)
+			var saveDataList = [String]()
+			for (key,value) in m_data
+			{
+				saveDataList.append(key)
+				var val = "\(value)"
+				saveDataList.append( val )
+			}
+			
+			NSKeyedArchiver.archiveRootObject(saveDataList, toFile: fullfilename)
+//			NSKeyedArchiver.archiveRootObject(m_data as NSDictionary, toFile: fullfilename)
 			return true
 		}
 

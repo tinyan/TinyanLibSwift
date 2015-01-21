@@ -138,6 +138,19 @@ public class CCommonGame
 		m_gamecenterFlag = flag
 	}
 	
+	public func checkGamecenterEnable() -> Bool
+	{
+		if m_gamecenterFlag
+		{
+			if GKLocalPlayer.localPlayer().authenticated
+			{
+				return true
+			}
+		}
+		
+		return false
+	}
+	
 	public func reportAchievement(percent:Double , identifier : String , popup : Bool)
 	{
 		if GKLocalPlayer.localPlayer().authenticated
