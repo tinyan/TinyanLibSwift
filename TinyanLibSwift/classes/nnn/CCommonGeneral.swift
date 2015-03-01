@@ -58,6 +58,7 @@ public class CCommonGeneral : SKScene
 		m_commonCommand = -1
 	}
 
+	
 //	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
 	override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
 	{
