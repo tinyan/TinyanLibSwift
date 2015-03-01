@@ -138,12 +138,8 @@ public class CCommonJsonObject
 	
 	public func getCGVectorObject(name:String) -> CGVector?
 	{
-		if var point = getCGPointObject(name)
-		{
-			return CGVector(dx:point.x,dy:point.y)
-		}
-		
-		return nil
+		var keyArray = name.componentsSeparatedByString(".")
+		return getCGVectorObject(keyArray)
 	}
 
 	public func getCGVectorObject(keyArray:[String]) -> CGVector?
@@ -157,21 +153,14 @@ public class CCommonJsonObject
 	
 	public func getCGVectorObject(#keyList:String...) -> CGVector?
 	{
-		if var point = getCGPointObject(keyList)
-		{
-			return CGVector(dx:point.x,dy:point.y)
-		}
-		return nil
+		return getCGVectorObject(keyList)
 	}
 	
 
 	public func getCGSizeObject(name:String) -> CGSize?
 	{
-		if var point = getCGPointObject(name)
-		{
-			return CGSize(width:point.x,height:point.y)
-		}
-		return nil
+		var keyArray = name.componentsSeparatedByString(".")
+		return getCGSizeObject(keyArray)
 	}
 	
 	public func getCGSizeObject(keyArray:[String]) -> CGSize?
@@ -185,29 +174,15 @@ public class CCommonJsonObject
 	
 	public func getCGSizeObject(#keyList:String...) -> CGSize?
 	{
-		if var point = getCGPointObject(keyList)
-		{
-			return CGSize(width:point.x,height:point.y)
-		}
-		return nil
+		return getCGSizeObject(keyList)
 	}
 	
 	
 	
 	public func getCGPointObject(name:String) -> CGPoint?
 	{
-		if var obj: AnyObject = getAnyObject(name)
-		{
-			var p = obj as! [Int]
-			if p.count < 2
-			{
-				return nil
-			}
-				
-			return CGPoint(x:p[0],y:p[1])
-		}
-		
-		return nil
+		var keyArray = name.componentsSeparatedByString(".")
+		return getCGPointObject(keyArray)
 	}
 	
 	public func getCGPointObject(keyArray:[String]) -> CGPoint?
@@ -230,21 +205,11 @@ public class CCommonJsonObject
 	
 	public func getCGPointObject(#keyList:String...) -> CGPoint?
 	{
-		if var obj: AnyObject = getAnyObject(keyList)
-		{
-			var p = obj as! [Int]
-			if p.count < 2
-			{
-				return nil
-			}
-			
-			return CGPoint(x:p[0],y:p[1])
-		}
-		
-		return nil
+		return getCGPointObject(keyList)
 	}
 	
 
+	
 	//common
 	
 	public func getAnyObject(keyArray:[String]) -> AnyObject?

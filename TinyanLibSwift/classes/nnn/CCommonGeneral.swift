@@ -32,9 +32,9 @@ public class CCommonGeneral : SKScene
 	public var m_commonLastCount = 0
 	
 
-	public var m_bgColorRed : CGFloat = 0.5
-	public var m_bgColorGreen : CGFloat = 0.5
-	public var m_bgColorBlue : CGFloat = 0.5
+	public var m_bgColorRed : CGFloat = 0.1
+	public var m_bgColorGreen : CGFloat = 0.1
+	public var m_bgColorBlue : CGFloat = 0.9
 	public var m_bgColorAlpha : CGFloat = 1.0
 	
 	public init(modeNumber:Int , game : CCommonGame, size:CGSize)
@@ -222,4 +222,62 @@ public class CCommonGeneral : SKScene
 		
 	}
 
+	
+	public func getInitArray<T>(json:CCommonJsonObject,inout name:[T],keyList:String...) -> Bool
+	{
+		if var data : [T] = json.getArrayObject(keyList)
+		{
+			name = data
+			println("good0 \(data)")
+			return true
+		}
+		return false
+	}
+	
+	public func getInitParam<T>(json:CCommonJsonObject,inout name:T,keyList:String...) -> Bool
+	{
+		if var data : T = json.getObject(keyList)
+		{
+			name = data
+			println("good0 \(data)")
+			return true
+		}
+		return false
+	}
+	
+	
+	
+	public func getInitCGPoint(json:CCommonJsonObject,inout name:CGPoint,keyList:String...) -> Bool
+	{
+		if var pt : CGPoint = json.getCGPointObject(keyList)
+		{
+			name = pt
+			println("good0 \(pt)")
+			return true
+		}
+		return false
+	}
+	
+	public func getInitCGSize(json:CCommonJsonObject,inout name:CGSize,keyList:String...) -> Bool
+	{
+		if var pt : CGSize = json.getCGSizeObject(keyList)
+		{
+			name = pt
+			println("good0 \(pt)")
+			return true
+		}
+		return false
+	}
+	
+	public func getInitCGVector(json:CCommonJsonObject,inout name:CGVector,keyList:String...) -> Bool
+	{
+		if var pt : CGVector = json.getCGVectorObject(keyList)
+		{
+			name = pt
+			println("good0 \(pt)")
+			return true
+		}
+		return false
+	}
+	
 }

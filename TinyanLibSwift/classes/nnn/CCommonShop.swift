@@ -42,9 +42,9 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	
 	func getPriceList(objects:[AnyObject])
 	{
-		var productID : NSSet  = NSSet(array:objects)
-//		var request  = SKProductsRequest(productIdentifiers: productID)
-		var request  = SKProductsRequest(productIdentifiers: productID as Set<NSObject>)
+		var productID = Set<NSObject>(arrayLiteral: objects)
+//		var productID : NSSet  = NSSet(array:objects)
+		var request  = SKProductsRequest(productIdentifiers: productID)
 		request.delegate = self
 		request.start()
 	}
@@ -52,14 +52,12 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	
 	func startPayment(object:AnyObject)
 	{
-		//var productID : NSSet  = NSSet(object:"com.bugnekosoft.kusogee.extrastage1")
 		m_paymentMode = true
-		m_productID = object as! NSString as String
+		m_productID = object as! String
 		
-		
-		var productID : NSSet  = NSSet(object:object)
-//		var request  = SKProductsRequest(productIdentifiers: productID )
-		var request  = SKProductsRequest(productIdentifiers: productID as Set<NSObject>)
+		var productID = Set<NSObject>(arrayLiteral: [object])
+//		var productID : NSSet  = NSSet(object:object)
+		var request  = SKProductsRequest(productIdentifiers: productID)
 		request.delegate = self
 		startIndicator()
 		request.start()
@@ -68,12 +66,12 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	func startRestore(object:AnyObject)
 	{
 		m_paymentMode = false
-		m_productID = object as! NSString as String
+		m_productID = object as! String
 		
 		
-		var productID : NSSet  = NSSet(object:object)
-//		var request  = SKProductsRequest(productIdentifiers:  productID)
-		var request  = SKProductsRequest(productIdentifiers:  productID as Set<NSObject>)
+		var productID = Set<NSObject>(arrayLiteral: [object])
+		//		var productID : NSSet  = NSSet(object:object)
+		var request  = SKProductsRequest(productIdentifiers:  productID)
 		request.delegate = self
 		startIndicator()
 		request.start()
@@ -145,9 +143,9 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		}
 		
 		
-		for product in response.products
+		for product in response.products as! [SKProduct]
 		{
-			m_payment = SKPayment(product: product as! SKProduct)
+			m_payment = SKPayment(product: product)
 			SKPaymentQueue.defaultQueue().addTransactionObserver(self)
 			
 			
@@ -168,9 +166,9 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	
 	public func paymentQueue(queue: SKPaymentQueue!,	updatedTransactions transactions: [AnyObject]!)
 	{
-		for object in transactions
+		for transaction in transactions as! [SKPaymentTransaction]
 		{
-			let transaction = object as! SKPaymentTransaction
+			//let transaction = object as! SKPaymentTransaction
 			var state = transaction.transactionState
 			
 			switch (state)
@@ -218,9 +216,9 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		
 		var restore = false
 		
-		for transaction in queue.transactions
+		for transaction in queue.transactions as! [SKPaymentTransaction]
 		{
-			if (transaction as! SKPaymentTransaction).payment.productIdentifier == m_productID
+			if transaction.payment.productIdentifier == m_productID
 			{
 				printDebugMessage("found resotore")
 				restoreProduct(m_productID)
@@ -254,38 +252,74 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		SKPaymentQueue.defaultQueue().removeTransactionObserver(self)
 	}
 	
+//	public var m_shopButtonFilename = "bmp/shopbutton.png"
+//	public var m_shopButtonPicNumber = [1,2]
+//	public var m_shopButtonSize = CGSize(width: 300, height: 150)
+//	public var m_shopButtonPoint = CGPoint(x:150,y:75)
 	
 	
 	public var m_indicatorCreateFlag = false
-	public var m_buttonPic = CCommonSpriteCutter(filename: "bmp/shopbutton.png", x: 1, y: 2)
-	public var m_shopButton : [CCommonButton] = []
+//	public var m_buttonPic = CCommonSpriteCutter(filename: "bmp/shopbutton.png", x: 1, y: 2)
+//	public var m_shopButton : [CCommonButton] = []
 	public var m_indicator : UIActivityIndicatorView!
 	
 	public var m_shopMode = 0
 	public var m_shopButtonCreateFlag = false
 	
-	public var m_shopItemPic = CCommonSpriteCutter(filename: "bmp/shopitem.png", x: 2, y: 2)
-	public var m_alreadyButPic = SKTexture(imageNamed: "bmp/alreadybuy.png")
-	public var m_itemButtonPic = CCommonSpriteCutter(filename: "bmp/shopitembutton.png", x: 1, y: 2)
+	
+	
+	public var m_shopItemPic : CCommonSpriteCutter!
+	public var m_alreadyBuyPic : SKTexture!
+	public var m_itemButtonPic : CCommonSpriteCutter!
+	
+	public var m_alreadyBuySize = CGSize(width: 300, height: 300)
+	
+	public var m_itemSize = CGSize(width: 400, height: 400)
+	public var m_itemPoint = CGPoint(x:225,y:1350)
+	public var m_itemNext = CGVector(dx:0,dy:-500)
+	public var m_itemHorizontally = true
+	public var m_itemBlockX = 1
+	public var m_itemBlockY = 1
+	public var m_buyButtonOffset = CGVector(dx:450,dy:100)
+	public var m_restoreButtonOffset = CGVector(dx:450,dy:-100)
+	public var m_buyButtonSize = CGSize(width: 400, height: 100)
+	public var m_restoreButtonSize = CGSize(width: 400, height: 100)
+	
+//	public var m_shopItemPic = CCommonSpriteCutter(filename: "bmp/shopitem.png", x: 2, y: 2)
+//	public var m_alreadyBuyPic = SKTexture(imageNamed: "bmp/alreadybuy.png")
+//	public var m_itemButtonPic = CCommonSpriteCutter(filename: "bmp/shopitembutton.png", x: 1, y: 2)
+	
 	
 	public var m_itemButton : [CCommonButton] = []
 	public var m_alreadyBuyTexture : [SKSpriteNode] = []
 	
-	//	required init?(coder aDecoder: NSCoder) {
-	//		super.init(coder: aDecoder)
-	//	}
-	
 	public var m_priceGetFlag = false
 	
+	
+	public var m_restoreText = "RESTORE"
+	public var m_buyButtonFontName = "Helvetica-Bold"
+	public var m_restoreButtonFontName = "Helvetica-Bold"
+	public var m_buyButtonFontSize : CGFloat = 64.0
+	public var m_restoreButtonFontSize : CGFloat = 64.0
+	
+	
+	
 	public var m_shopItemDesc : [String] = ["DESC1","DESC2..."]
-	public var m_shopItemDescFilename : String = "text/shopitemdesc"
+	public var m_shopItemDescPoint = CGPoint(x:450,y:900)
+	public var m_shopItemDescNext = CGVector(dx:0,dy:-150)
+	public var m_shopItemDescFontFilename = "bmp/shopfont.png"
+	public var m_shopItemDescFontSize = CGSize(width: 32, height: 32)
+	
+	//public var m_shopItemDescFilename : String = "text/shopitemdesc"
 	
 	public var m_shopItemDescMessage : [CCommonMessage64] = []
+
 	
-	public var m_itemDescPrintX : CGFloat = 450.0
-	public var m_itemDescPrintY : CGFloat = 900.0
-	public var m_itemDescNextX : CGFloat = 0
-	public var m_itemDescNextY : CGFloat = -150.0
+	
+//	public var m_itemDescPrintX : CGFloat = 450.0
+//	public var m_itemDescPrintY : CGFloat = 900.0
+//	public var m_itemDescNextX : CGFloat = 0
+//	public var m_itemDescNextY : CGFloat = -150.0
 
 	public var m_debugMessagePrintFlag = true
 	
@@ -303,52 +337,94 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	{
 		super.init(modeNumber:modeNumber , game:game , size: size)
 		
-		self.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.9, alpha: 1.0)
-		scaleMode = .AspectFit
-
-		//set
-		//dummy
-		m_productIDList = ["com.bugnekosoft.kusogee.extrastage1"]
-		m_priceList = ["dummy"]
-		m_priceListGetFlag = [false]
-		
-		
-		
-		//		for i in 0 ..< 3 //for debug button
-		for i in 0 ..< 1
+		if var json = CCommonJsonObject.loadByFilename("init/shop")
 		{
-			var b = 0
-			if i > 0
+			getViewParam(json)
+
+			m_commonMenu = CCommonMenu(general: self, json: json, menu: "menu")
+			self.addChild(m_commonMenu)
+			
+			if var productList : [String] = json.getArrayObject(keyList: "productList")
 			{
-				b = 1
+				m_productIDList = productList
+				//var cnt = m_productIDList.count
+				m_priceList  = []
+				m_priceListGetFlag = []
+				for i in 0 ..< m_productIDList.count
+				{
+					m_priceList.append("dummy")
+					m_priceListGetFlag.append(false)
+				}
 			}
-			var texture = m_buttonPic.cutSprite(b)
-			var buttonSize = CGSize(width: 300.0, height: 150.0)
-			var button = CCommonButton(general: self, texture: texture, size: buttonSize)
-			var bx = CGFloat(i%3) * 300.0 + 150.0
-			var by = CGFloat(i/3) * 150.0 + 75.0
-			var pos = CGPoint(x:bx , y:by)
-			button.setNumber(i)
-			button.position = pos
-			self.addChild(button)
-			m_shopButton.append(button)
+
+			var top = "common"
+			if var dummy: AnyObject = json.getAnyObject(top)
+			{
+				var itemFilename = "bmp/shopitem.png"
+				var block = [1,1]
+				getInitParam(json, name: &itemFilename, keyList: top,"itemFilename")
+				getInitArray(json,name:&block,keyList:top,"itemPicNumber")
+				m_shopItemPic = CCommonSpriteCutter(filename: itemFilename, x: block[0], y: block[1])
+
+				var alreadyBuyFilename = "bmp/alreadybuy.png"
+				getInitParam(json,name: &alreadyBuyFilename,keyList:top,"alreadyBuyFilename")
+				m_alreadyBuyPic = SKTexture(imageNamed: alreadyBuyFilename)
+				
+				getInitCGSize(json,name:&m_alreadyBuySize,keyList:top,"alreadyBuySize")
+				
+				var itemButtonFilename = "bmp/shopitembutton.png"
+				getInitParam(json,name:&itemButtonFilename,keyList:top,"itemButtonFilename")
+
+				block = [1,2]
+				getInitArray(json, name: &block, keyList: top,"itemButtonPicNumber")
+				m_itemButtonPic = CCommonSpriteCutter(filename: itemButtonFilename, x: block[0], y: block[1])
+
+				getInitParam(json, name: &m_restoreText, keyList: top,"restoreText")
+				
+				getInitCGSize(json,name:&m_itemSize,keyList:top,"itemSize")
+				getInitCGPoint(json,name:&m_itemPoint,keyList:top,"itemPoint")
+				getInitCGVector(json,name:&m_itemNext,keyList:top,"itemNext")
+				
+				getInitCGVector(json, name: &m_buyButtonOffset, keyList: top,"buyButtonOffset")
+				getInitCGSize(json, name: &m_buyButtonSize, keyList: top,"buyButtonSize")
+				getInitParam(json,name:&m_buyButtonFontName,keyList:top,"buyButtonFontName")
+				getInitParam(json,name:&m_buyButtonFontSize,keyList:top,"buyButtonFontSize")
+				getInitCGVector(json, name: &m_restoreButtonOffset, keyList: top,"restoreButtonOffset")
+				getInitCGSize(json, name: &m_restoreButtonSize, keyList: top,"restoreButtonSize")
+				getInitParam(json,name:&m_restoreButtonFontName,keyList:top,"restoreButtonFontName")
+				getInitParam(json,name:&m_restoreButtonFontSize,keyList:top,"restoreButtonFontSize")
+				
+				getInitArray(json, name: &m_shopItemDesc, keyList: top,"shopItemDesc")
+				getInitParam(json,name:&m_shopItemDescFontFilename,keyList:top,"shopItemDescFontFilename")
+				getInitCGSize(json, name: &m_shopItemDescFontSize, keyList: top,"shopitemDescFontSize")
+				
+			}
+			
+			for i in 0 ..< m_productIDList.count
+			{
+				//kobetu setteiarebakokode
+				
+				
+			}
 		}
 		
-		loadShopItemDesc()
-		
-		var shopFont = CCommonSpriteCutter(filename: "bmp/shopfont.png", x: 8, y: 8)
-		
+		var shopFont = CCommonSpriteCutter(filename: m_shopItemDescFontFilename, x: 8, y: 8)
 		
 		for i in 0 ..< m_shopItemDesc.count
 		{
-			var mes = CCommonMessage64(size: CGSize(width: 32, height: 32), font: shopFont)
+			var mes = CCommonMessage64(size: m_shopItemDescFontSize, font: shopFont)
 			m_shopItemDescMessage.append(mes);
-			var x : CGFloat = m_itemDescPrintX + CGFloat(i) * m_itemDescNextX
-			var y : CGFloat = m_itemDescPrintY + CGFloat(i) * m_itemDescNextY
+			
+			var x : CGFloat = m_shopItemDescPoint.x + CGFloat(i) * m_shopItemDescNext.dx
+			var y : CGFloat = m_shopItemDescPoint.y + CGFloat(i) * m_shopItemDescNext.dy
 			
 			m_shopItemDescMessage[i].position = CGPoint(x:x,y:y)
 			self.addChild(m_shopItemDescMessage[i])
 		}
+		
+		
+		self.backgroundColor = UIColor(red: m_bgColorRed, green: m_bgColorGreen, blue: m_bgColorBlue, alpha: m_bgColorAlpha)
+		scaleMode = .AspectFit
 	}
 	
 	override public func EnterMode()
@@ -361,8 +437,8 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		
 		for i in 0 ..< m_shopItemDesc.count
 		{
-			var x : CGFloat = m_itemDescPrintX + CGFloat(i) * m_itemDescNextX
-			var y : CGFloat = m_itemDescPrintY + CGFloat(i) * m_itemDescNextY
+			var x : CGFloat = m_shopItemDescPoint.x + CGFloat(i) * m_shopItemDescNext.dx
+			var y : CGFloat = m_shopItemDescPoint.x + CGFloat(i) * m_shopItemDescNext.dy
 			var point = CGPoint(x:x,y:y)
 			m_shopItemDescMessage[i].print(point: point, mes: m_shopItemDesc[i], center: true)
 		}
@@ -450,32 +526,27 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		{
 			for i in 0 ..< m_productIDList.count
 			{
-				var printX : CGFloat = 225.0
-				var printY : CGFloat = 1350.0 - CGFloat(i) * 500.0
-				
+				var itemPoint = getItemBasePoint(i)
 				var itemTexture = m_shopItemPic.cutSprite(i)
-				var itemSize = CGSize(width: 400, height: 400)
-				var itemSprite = SKSpriteNode(texture: itemTexture,color : UIColor.clearColor(),size:itemSize)
-				itemSprite.position = CGPoint(x:printX,y:printY)
+				var itemSprite = SKSpriteNode(texture: itemTexture,color : UIColor.clearColor(),size:m_itemSize)
+				itemSprite.position = itemPoint
 				self.addChild(itemSprite)
 				
 				//already buy
-				var alreadyBuySize = CGSize(width: 300.0, height: 300.0)
-				var alreadyBuySprite = SKSpriteNode(texture:m_alreadyButPic,color:UIColor.clearColor(),size:alreadyBuySize)
+				var alreadyBuySprite = SKSpriteNode(texture:m_alreadyBuyPic,color:UIColor.clearColor(),size:m_alreadyBuySize)
 				itemSprite.addChild(alreadyBuySprite)
 				m_alreadyBuyTexture.append(alreadyBuySprite)
 				
+				
 				//button
-				var buttonSize = CGSize(width: 400.0, height: 100.0)
 				var buyTexture = m_itemButtonPic.cutSprite(0)
-				var buyButton = CCommonButton(general: self, texture: buyTexture, size: buttonSize)
+				var buyButton = CCommonButton(general: self, texture: buyTexture, size: m_buyButtonSize)
 				buyButton.setNumber(3 + i * 2 + 0)
-				var buyButtonPos = CGPoint(x:printX + 450.0,y:printY + 100.0)
-				buyButton.position = buyButtonPos
+				buyButton.position = getBuyButtonPoint(i)
 				
 				var label = SKLabelNode(text: m_priceList[i])
-				label.fontName = "Helvetica-Bold"
-				label.fontSize = 64
+				label.fontName = m_buyButtonFontName
+				label.fontSize = m_buyButtonFontSize
 				label.fontColor = UIColor.cyanColor()
 				label.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
 				label.position = CGPoint(x:0,y:0)
@@ -485,15 +556,15 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 				
 				m_itemButton.append(buyButton)
 				
+				
 				var restoreTexture = m_itemButtonPic.cutSprite(1)
-				var restoreButton = CCommonButton(general: self, texture: restoreTexture, size: buttonSize)
-				var restoreButtonPos = CGPoint(x:printX + 450.0,y:printY - 100.0)
-				restoreButton.position = restoreButtonPos
+				var restoreButton = CCommonButton(general: self, texture: restoreTexture, size: m_restoreButtonSize)
+				restoreButton.position = getRestoreButtonPoint(i)
 				restoreButton.setNumber(3 + i * 2 + 1)
 				
-				var label2 = SKLabelNode(text: "RESTORE")
-				label2.fontName = "Helvetica-Bold"
-				label2.fontSize = 64
+				var label2 = SKLabelNode(text: m_restoreText)
+				label2.fontName = m_restoreButtonFontName
+				label2.fontSize = m_restoreButtonFontSize
 				label2.fontColor = UIColor.cyanColor()
 				label2.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
 				label2.position = CGPoint(x:0,y:0)
@@ -502,6 +573,9 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 				
 				self.addChild(restoreButton)
 				m_itemButton.append(restoreButton)
+				
+				
+				
 			}
 			
 			
@@ -509,6 +583,50 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		}
 		
 		checkAlreadyBuyAndSetButton()
+	}
+	
+	public func getItemBasePoint(n:Int) -> CGPoint
+	{
+		var point:CGPoint = CGPoint(x:0,y:0)
+		
+		
+		var nx = 0
+		var ny = 0
+		
+		if m_itemHorizontally
+		{
+			nx = n % m_itemBlockX
+			ny = n / m_itemBlockX
+		}
+		else
+		{
+			ny = n % m_itemBlockY
+			nx = n / m_itemBlockY
+		}
+		
+		
+		
+		point.x = m_itemPoint.x + m_itemNext.dx * CGFloat(nx)
+		point.y = m_itemPoint.y + m_itemNext.dy * CGFloat(ny)
+		
+		return point
+	}
+	
+	
+	public func getBuyButtonPoint(n:Int) -> CGPoint
+	{
+		var point = getItemBasePoint(n)
+		point.x += m_buyButtonOffset.dx
+		point.y += m_buyButtonOffset.dy
+		return point
+	}
+
+	public func getRestoreButtonPoint(n:Int) -> CGPoint
+	{
+		var point = getItemBasePoint(n)
+		point.x += m_restoreButtonOffset.dx
+		point.y += m_restoreButtonOffset.dy
+		return point
 	}
 	
 	
@@ -584,9 +702,9 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	{
 		m_indicator.startAnimating()
 		m_processingFlag = true
-		for i in 0 ..< m_shopButton.count
+		for button in m_commonMenu.m_button
 		{
-			m_shopButton[i].alpha = 0.3
+			button.alpha = 0.3
 		}
 	}
 	
@@ -594,9 +712,9 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	{
 		m_indicator.stopAnimating()
 		m_processingFlag = false
-		for i in 0 ..< m_shopButton.count
+		for button in m_commonMenu.m_button
 		{
-			m_shopButton[i].alpha = 1.0
+			button.alpha = 1.0
 		}
 	}
 	
@@ -657,7 +775,7 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	{
 		for i in 0 ..< m_productIDList.count
 		{
-			/*
+			
 			let game = m_game as CCommonGame
 			var flag = game.checkBuyItem(i)
 			m_alreadyBuyTexture[i].hidden = !flag
@@ -672,7 +790,7 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 				m_itemButton[i*2].alpha = 1.0
 				m_itemButton[i*2].userInteractionEnabled = true
 			}
-			*/
+			
 		}
 	}
 	
@@ -736,32 +854,6 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	
 	
 	
-	public func loadShopItemDesc()
-	{
-		if var json = CCommonJsonObject.loadByFilename("text/shopitemdesc")
-		{
-			if var data : AnyObject = json.getAnyObject("itemdesc")
-			{
-				var t = data as! [String]
-				m_shopItemDesc = t
-			}
-					
-			if var data : AnyObject = json.getAnyObject("print")
-			{
-				var t = data as! [Int]
-				if t.count >= 2
-				{
-					m_itemDescPrintX = CGFloat(t[0])
-					m_itemDescPrintY = CGFloat(t[1])
-				}
-				if t.count >= 4
-				{
-					m_itemDescNextX = CGFloat(t[2])
-					m_itemDescNextY = CGFloat(t[3])
-				}
-			}
-		}
-	}
 
 	func printDebugMessage(mes:String)
 	{
@@ -778,6 +870,12 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 			m_game.playSound(sound)
 		}
 	}
+
+	
+	
+
+	
+	
 }
 
 
