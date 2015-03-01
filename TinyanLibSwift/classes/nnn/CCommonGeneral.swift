@@ -9,6 +9,8 @@
 import Foundation
 import SpriteKit
 
+let COMMON_BUTTON_LAYER_Z : CGFloat = 50.0
+
 public class CCommonGeneral : SKScene
 {
 	override public func didMoveToView(view: SKView)
@@ -24,6 +26,16 @@ public class CCommonGeneral : SKScene
 	
 	public var m_game : CCommonGame
 	public var m_modeNumber:Int
+	
+	public var m_commonMenu : CCommonMenu!
+	public var m_commonCommand = -1
+	public var m_commonLastCount = 0
+	
+
+	public var m_bgColorRed : CGFloat = 0.5
+	public var m_bgColorGreen : CGFloat = 0.5
+	public var m_bgColorBlue : CGFloat = 0.5
+	public var m_bgColorAlpha : CGFloat = 1.0
 	
 	public init(modeNumber:Int , game : CCommonGame, size:CGSize)
 	{
@@ -43,10 +55,11 @@ public class CCommonGeneral : SKScene
 	
 	public func EnterMode()
 	{
-		
+		m_commonCommand = -1
 	}
-	
-	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
+
+//	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
+	override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
 	{
 		if m_game.checkActive()
 		{
@@ -57,7 +70,8 @@ public class CCommonGeneral : SKScene
 		}
 	}
 	
-	override public func touchesMoved(touches: NSSet, withEvent event: UIEvent)
+//	override public func touchesMoved(touches: NSSet, withEvent event: UIEvent)
+	override public func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent)
 	{
 		if m_game.checkActive()
 		{
@@ -68,7 +82,8 @@ public class CCommonGeneral : SKScene
 		}
 	}
 	
-	override public func touchesEnded(touches: NSSet, withEvent event: UIEvent)
+//	override public func touchesEnded(touches: NSSet, withEvent event: UIEvent)
+	override public func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent)
 	{
 		if m_game.checkActive()
 		{
@@ -113,6 +128,27 @@ public class CCommonGeneral : SKScene
 	//dummy
 	public func onUpdate(currentTime: CFTimeInterval)
 	{
+	}
+	
+	public func onCommonClick(number:Int)
+	{
+	}
+	
+	public func calcuCommonButtonResult() -> Int?
+	{
+		if m_commonCommand != -1
+		{
+			if m_commonLastCount > 0
+			{
+				m_commonLastCount--
+				if m_commonLastCount == 0
+				{
+					return m_commonCommand
+				}
+			}
+		}
+		
+		return nil
 	}
 	
 	
@@ -164,5 +200,25 @@ public class CCommonGeneral : SKScene
 		return image2
 	}
 	
-	
+	public func getViewParam(json:CCommonJsonObject)
+	{
+		if var red : Int = json.getObject(keyList: "view","red")
+		{
+			m_bgColorRed = CGFloat(red) / 255.0
+		}
+		if var green : Int = json.getObject(keyList: "view","green")
+		{
+			m_bgColorGreen = CGFloat(green) / 255.0
+		}
+		if var blue : Int = json.getObject(keyList: "view","blue")
+		{
+			m_bgColorBlue = CGFloat(blue) / 255.0
+		}
+		if var alpha : Int = json.getObject(keyList: "view","alpha")
+		{
+			m_bgColorAlpha = CGFloat(alpha) / 255.0
+		}
+		
+	}
+
 }

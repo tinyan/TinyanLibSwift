@@ -13,7 +13,7 @@ import Social
 public class CCommonViewController: UIViewController , GKGameCenterControllerDelegate , UINavigationControllerDelegate{
 	
 	var m_drawType : Int?
-	var m_game : CCommonGame?
+	var m_game : CCommonGame!
 	
 	override public func viewDidLoad() {
 		super.viewDidLoad()
@@ -22,7 +22,7 @@ public class CCommonViewController: UIViewController , GKGameCenterControllerDel
 		//        let scene = GameScene(fileNamed:"GameScene")
 		//		let scene = GameScene()
 		// Configure the view.
-		let skView = self.view as SKView
+		let skView = self.view as! SKView
 		skView.showsFPS = true
 		skView.showsNodeCount = true
 		
@@ -41,7 +41,7 @@ public class CCommonViewController: UIViewController , GKGameCenterControllerDel
 	public func setGame(lpGame : CCommonGame )
 	{
 		m_game = lpGame
-		(UIApplication.sharedApplication().delegate as CCommonAppDelegate).setGame(lpGame)
+		(UIApplication.sharedApplication().delegate as! CCommonAppDelegate).setGame(lpGame)
 	}
 	
 	//
@@ -87,7 +87,7 @@ public class CCommonViewController: UIViewController , GKGameCenterControllerDel
 	{
 		self.dismissViewControllerAnimated(true, completion: nil)
 	//	NSLog("gameCenterViewControllerDidFinish")
-		m_game?.inGameCenter(false)
+		m_game.inGameCenter(false)
 	}
 	
 	override public func shouldAutorotate() -> Bool {

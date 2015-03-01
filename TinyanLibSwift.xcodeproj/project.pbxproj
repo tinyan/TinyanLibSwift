@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3025AC9E1A93CB12009E3FEA /* CCommonShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3025AC9D1A93CB12009E3FEA /* CCommonShop.swift */; };
+		3025ACA01A946BC8009E3FEA /* CCommonJsonObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3025AC9F1A946BC8009E3FEA /* CCommonJsonObject.swift */; };
+		3025ACA21A947D98009E3FEA /* CCommonTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3025ACA11A947D98009E3FEA /* CCommonTitle.swift */; };
+		3025ACA41A94CB2F009E3FEA /* CCommonOtherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3025ACA31A94CB2F009E3FEA /* CCommonOtherApp.swift */; };
+		3025ACA61A94D089009E3FEA /* CCommonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3025ACA51A94D089009E3FEA /* CCommonConfig.swift */; };
+		30283A1D1A72D2E600AF4C77 /* CCommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30283A1C1A72D2E600AF4C77 /* CCommonButton.swift */; };
+		30283A1F1A72D43200AF4C77 /* CCommonSpriteCutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30283A1E1A72D43200AF4C77 /* CCommonSpriteCutter.swift */; };
+		30283A211A72D7A500AF4C77 /* CCommonMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30283A201A72D7A500AF4C77 /* CCommonMessage.swift */; };
 		305FB6F119C1C41F0062BDCF /* CCommonGamecenterDataControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305FB6F019C1C41F0062BDCF /* CCommonGamecenterDataControl.swift */; };
+		3068E19B1A9B3EAF00B29C7A /* CCommonButtonSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3068E19A1A9B3EAF00B29C7A /* CCommonButtonSetup.swift */; };
+		3068E19D1A9B460E00B29C7A /* CCommonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3068E19C1A9B460E00B29C7A /* CCommonMenu.swift */; };
 		306D6DCC19BFF21400F63CF2 /* CCommonAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306D6DCB19BFF21400F63CF2 /* CCommonAppDelegate.swift */; };
 		306D6DCE19BFF44200F63CF2 /* CCommonGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306D6DCD19BFF44200F63CF2 /* CCommonGame.swift */; };
 		306D6DD019BFF48600F63CF2 /* CCommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306D6DCF19BFF48600F63CF2 /* CCommonViewController.swift */; };
@@ -37,7 +47,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3025AC9D1A93CB12009E3FEA /* CCommonShop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CCommonShop.swift; path = TinyanLibSwift/classes/nnn/CCommonShop.swift; sourceTree = "<group>"; };
+		3025AC9F1A946BC8009E3FEA /* CCommonJsonObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCommonJsonObject.swift; sourceTree = "<group>"; };
+		3025ACA11A947D98009E3FEA /* CCommonTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCommonTitle.swift; sourceTree = "<group>"; };
+		3025ACA31A94CB2F009E3FEA /* CCommonOtherApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCommonOtherApp.swift; sourceTree = "<group>"; };
+		3025ACA51A94D089009E3FEA /* CCommonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCommonConfig.swift; sourceTree = "<group>"; };
+		30283A1C1A72D2E600AF4C77 /* CCommonButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCommonButton.swift; sourceTree = "<group>"; };
+		30283A1E1A72D43200AF4C77 /* CCommonSpriteCutter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCommonSpriteCutter.swift; sourceTree = "<group>"; };
+		30283A201A72D7A500AF4C77 /* CCommonMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCommonMessage.swift; sourceTree = "<group>"; };
 		305FB6F019C1C41F0062BDCF /* CCommonGamecenterDataControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CCommonGamecenterDataControl.swift; path = TinyanLibSwift/classes/ios/CCommonGamecenterDataControl.swift; sourceTree = "<group>"; };
+		3068E19A1A9B3EAF00B29C7A /* CCommonButtonSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCommonButtonSetup.swift; sourceTree = "<group>"; };
+		3068E19C1A9B460E00B29C7A /* CCommonMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCommonMenu.swift; sourceTree = "<group>"; };
 		306D6DCB19BFF21400F63CF2 /* CCommonAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CCommonAppDelegate.swift; path = TinyanLibSwift/classes/ios/CCommonAppDelegate.swift; sourceTree = "<group>"; };
 		306D6DCD19BFF44200F63CF2 /* CCommonGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CCommonGame.swift; path = TinyanLibSwift/classes/nnn/CCommonGame.swift; sourceTree = "<group>"; };
 		306D6DCF19BFF48600F63CF2 /* CCommonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CCommonViewController.swift; path = TinyanLibSwift/classes/ios/CCommonViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +104,15 @@
 				306D6DCD19BFF44200F63CF2 /* CCommonGame.swift */,
 				306D6DD119BFF4EB00F63CF2 /* CCommonGeneral.swift */,
 				30BC4A7D19A91ABB00AC63C7 /* CCommonSoundControl.swift */,
+				30283A1C1A72D2E600AF4C77 /* CCommonButton.swift */,
+				30283A1E1A72D43200AF4C77 /* CCommonSpriteCutter.swift */,
+				30283A201A72D7A500AF4C77 /* CCommonMessage.swift */,
+				3025AC9D1A93CB12009E3FEA /* CCommonShop.swift */,
+				3025ACA11A947D98009E3FEA /* CCommonTitle.swift */,
+				3025ACA31A94CB2F009E3FEA /* CCommonOtherApp.swift */,
+				3025ACA51A94D089009E3FEA /* CCommonConfig.swift */,
+				3068E19A1A9B3EAF00B29C7A /* CCommonButtonSetup.swift */,
+				3068E19C1A9B460E00B29C7A /* CCommonMenu.swift */,
 			);
 			name = nnn;
 			sourceTree = "<group>";
@@ -101,6 +130,7 @@
 		30B7D1A019682A73008C7F46 = {
 			isa = PBXGroup;
 			children = (
+				3025AC9F1A946BC8009E3FEA /* CCommonJsonObject.swift */,
 				305FB6F019C1C41F0062BDCF /* CCommonGamecenterDataControl.swift */,
 				306D6DD519C1454900F63CF2 /* CCommonUserData.swift */,
 				306D6DD419C00D7C00F63CF2 /* ios */,
@@ -304,17 +334,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3025AC9E1A93CB12009E3FEA /* CCommonShop.swift in Sources */,
+				30283A1F1A72D43200AF4C77 /* CCommonSpriteCutter.swift in Sources */,
 				30BC4AD019A9341500AC63C7 /* OALData.m in Sources */,
 				30F6A7AF19BFF8D6006A8212 /* CCommonBannerViewController.swift in Sources */,
+				3068E19B1A9B3EAF00B29C7A /* CCommonButtonSetup.swift in Sources */,
 				306D6DD019BFF48600F63CF2 /* CCommonViewController.swift in Sources */,
+				3025ACA41A94CB2F009E3FEA /* CCommonOtherApp.swift in Sources */,
 				30BC4ACE19A9341500AC63C7 /* OALControl.m in Sources */,
 				306D6DCC19BFF21400F63CF2 /* CCommonAppDelegate.swift in Sources */,
 				30BC4AD419A9348D00AC63C7 /* OAL3DVector.m in Sources */,
+				3025ACA61A94D089009E3FEA /* CCommonConfig.swift in Sources */,
+				30283A1D1A72D2E600AF4C77 /* CCommonButton.swift in Sources */,
+				3068E19D1A9B460E00B29C7A /* CCommonMenu.swift in Sources */,
 				305FB6F119C1C41F0062BDCF /* CCommonGamecenterDataControl.swift in Sources */,
 				30BC4A7E19A91ABB00AC63C7 /* CCommonSoundControl.swift in Sources */,
+				3025ACA21A947D98009E3FEA /* CCommonTitle.swift in Sources */,
 				306D6DD619C1454900F63CF2 /* CCommonUserData.swift in Sources */,
 				306D6DCE19BFF44200F63CF2 /* CCommonGame.swift in Sources */,
+				30283A211A72D7A500AF4C77 /* CCommonMessage.swift in Sources */,
 				306D6DD219BFF4EB00F63CF2 /* CCommonGeneral.swift in Sources */,
+				3025ACA01A946BC8009E3FEA /* CCommonJsonObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

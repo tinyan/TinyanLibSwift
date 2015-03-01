@@ -9,36 +9,44 @@
 import Foundation
 import iAd
 
-class CCommonBannerViewController : CCommonViewController , ADBannerViewDelegate
+public class CCommonBannerViewController : CCommonViewController , ADBannerViewDelegate
 {
-	var m_type : Int?
-	var m_banner : ADBannerView?
+	var m_type = 0
+	var m_banner : ADBannerView!
 	
 	
-	override func viewDidLoad()
+	override public func viewDidLoad()
 	{
 		super.viewDidLoad()
+		mySetup()
 	}
 
-	func mySerup()
+	public func viewDidLoadWithType(type:Int)
+	{
+		m_type = type
+		super.viewDidLoad()
+		mySetup()
+	}
+
+	public func mySetup()
 	{
 		m_banner = ADBannerView(adType: ADAdType.Banner)
 		
 		var frame = UIScreen.mainScreen().applicationFrame
-		var height :CGFloat = m_banner!.frame.size.height
+		var height :CGFloat = m_banner.frame.size.height
 		var width = frame.size.width
 		if (self.interfaceOrientation == UIInterfaceOrientation.LandscapeLeft) || (self.interfaceOrientation == UIInterfaceOrientation.LandscapeRight)
 		{
 			width = frame.size.height
 		}
 		
-		m_banner?.frame = CGRectMake(0, -height, frame.size.width, height)
-		m_banner?.autoresizesSubviews = true
-		m_banner?.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleBottomMargin
+		m_banner.frame = CGRectMake(0, -height, frame.size.width, height)
+		m_banner.autoresizesSubviews = true
+		m_banner.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleBottomMargin
 		
-		m_banner?.hidden = true
-		self.view.addSubview(m_banner!)
-		m_banner?.delegate = self
+		m_banner.hidden = true
+		self.view.addSubview(m_banner)
+		m_banner.delegate = self
 		
 		
 		
@@ -85,28 +93,29 @@ class CCommonBannerViewController : CCommonViewController , ADBannerViewDelegate
 */
 	}
 	
-	func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!)
+	public func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!)
 	{
 		banner.hidden = true
 	}
 
-	func bannerViewActionDidFinish(banner: ADBannerView!)
+	public func bannerViewActionDidFinish(banner: ADBannerView!)
 	{
-		m_game?.oniAd(false)
+		m_game.oniAd(false)
 		//	[CMyDebugMessage OutputDebugMessage:@"banner action finish"];
 //		[m_game oniAd:NO];
 	}
 	
-	func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool
+	public func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool
 	{
 		//	[CMyDebugMessage OutputDebugMessage:@"banner should begin"];
 //		[m_game oniAd:YES];
-		m_game?.oniAd(true)
+		m_game.oniAd(true)
 		return true
 	}
 	
-	override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval)
+	override public func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval)
 	{
+		super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
 	/*
 		if (0)
 		{
@@ -136,8 +145,28 @@ class CCommonBannerViewController : CCommonViewController , ADBannerViewDelegate
 	}
 	
 	
-	func bannerViewDidLoadAd(banner: ADBannerView!)
-	{/*
+	public func bannerViewDidLoadAd(banner: ADBannerView!)
+	{
+		var bannerSize = banner.frame.size
+		var deviceSize = m_game.GetDeviceScreenSize()
+		var height = banner.frame.size.height
+		var width = deviceSize.width
+		
+		
+		if (self.interfaceOrientation == UIInterfaceOrientation.LandscapeLeft) || (self.interfaceOrientation == UIInterfaceOrientation.LandscapeRight)
+		{
+			width = deviceSize.height;
+		}
+		
+		banner.frame = CGRect(x:0,y:-height,width:width,height:height)
+		banner.hidden = false
+		
+		UIView.beginAnimations(nil, context: nil)
+		banner.frame  = CGRect(x:0,y:0,width:width,height:height)
+		UIView.commitAnimations()
+		
+		
+		/*
 		//	CGSize bannerSize = banner.frame.size;
 		
 		CGSize size = [m_game getDeviceScreenSize];
@@ -171,7 +200,7 @@ class CCommonBannerViewController : CCommonViewController , ADBannerViewDelegate
 */
 	}
 	
-	func bannerViewWillLoadAd(banner: ADBannerView!)
+	public func bannerViewWillLoadAd(banner: ADBannerView!)
 	{
 		
 	}

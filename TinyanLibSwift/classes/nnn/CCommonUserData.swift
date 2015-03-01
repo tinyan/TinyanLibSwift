@@ -57,7 +57,7 @@ public class CCommonUserData
 			{
 			
 //				let data = NSKeyedUnarchiver.unarchiveObjectWithFile(fullfilename) as [String : Int]
-				let data = NSKeyedUnarchiver.unarchiveObjectWithFile(fullfilename) as [String]
+				let data = NSKeyedUnarchiver.unarchiveObjectWithFile(fullfilename) as! [String]
 			
 				for i in 0 ..< data.count / 2
 				{
