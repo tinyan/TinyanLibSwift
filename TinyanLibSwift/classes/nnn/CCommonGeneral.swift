@@ -58,8 +58,8 @@ public class CCommonGeneral : SKScene
 		m_commonCommand = -1
 	}
 
-//	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
-	override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
+	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
+//	override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
 	{
 		if m_game.checkActive()
 		{
@@ -70,8 +70,8 @@ public class CCommonGeneral : SKScene
 		}
 	}
 	
-//	override public func touchesMoved(touches: NSSet, withEvent event: UIEvent)
-	override public func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent)
+	override public func touchesMoved(touches: NSSet, withEvent event: UIEvent)
+//	override public func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent)
 	{
 		if m_game.checkActive()
 		{
@@ -82,8 +82,8 @@ public class CCommonGeneral : SKScene
 		}
 	}
 	
-//	override public func touchesEnded(touches: NSSet, withEvent event: UIEvent)
-	override public func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent)
+	override public func touchesEnded(touches: NSSet, withEvent event: UIEvent)
+//	override public func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent)
 	{
 		if m_game.checkActive()
 		{

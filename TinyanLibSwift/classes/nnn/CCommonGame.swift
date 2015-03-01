@@ -87,7 +87,7 @@ public class CCommonGame
 		if let general = m_general[m_mode]
 		{
 			general.EnterMode()
-			let skView = m_viewController.view as! SKView
+			let skView = m_viewController.view as SKView
 //			let skView = m_viewController.view as! SKView
 			
 			let transition = SKTransition.crossFadeWithDuration(0.1)

@@ -40,8 +40,8 @@ public class CCommonMessage64 : SKSpriteNode
 		if (center)
 		{
 //			var ln = mes.utf16Count
-			var ln = count(mes)
-//			var ln = countElements(mes)
+//			var ln = count(mes)
+			var ln = countElements(mes)
 			var delta = CGFloat(ln-1) * 0.5
 			x -= delta * m_fontSize.width
 //			y -= 0.5 * m_fontSize.height

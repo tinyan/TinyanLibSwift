@@ -97,8 +97,8 @@ public class CCommonButton : SKSpriteNode
 	}
 	
 	
-	override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
-//	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
+// orverride public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
+	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
 	{
 		m_parent.onCommonClick(m_number)
 	}

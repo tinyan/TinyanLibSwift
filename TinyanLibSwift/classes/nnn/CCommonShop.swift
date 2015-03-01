@@ -43,8 +43,8 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	func getPriceList(objects:[AnyObject])
 	{
 		var productID : NSSet  = NSSet(array:objects)
-//		var request  = SKProductsRequest(productIdentifiers: productID)
-		var request  = SKProductsRequest(productIdentifiers: productID as Set<NSObject>)
+		var request  = SKProductsRequest(productIdentifiers: productID)
+//		var request  = SKProductsRequest(productIdentifiers: productID as Set<NSObject>)
 		request.delegate = self
 		request.start()
 	}
@@ -54,12 +54,12 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	{
 		//var productID : NSSet  = NSSet(object:"com.bugnekosoft.kusogee.extrastage1")
 		m_paymentMode = true
-		m_productID = object as! NSString as String
+		m_productID = object as NSString as String
 		
 		
 		var productID : NSSet  = NSSet(object:object)
-//		var request  = SKProductsRequest(productIdentifiers: productID )
-		var request  = SKProductsRequest(productIdentifiers: productID as Set<NSObject>)
+		var request  = SKProductsRequest(productIdentifiers: productID )
+//		var request  = SKProductsRequest(productIdentifiers: productID as Set<NSObject>)
 		request.delegate = self
 		startIndicator()
 		request.start()
@@ -68,12 +68,12 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	func startRestore(object:AnyObject)
 	{
 		m_paymentMode = false
-		m_productID = object as! NSString as String
+		m_productID = object as NSString as String
 		
 		
 		var productID : NSSet  = NSSet(object:object)
-//		var request  = SKProductsRequest(productIdentifiers:  productID)
-		var request  = SKProductsRequest(productIdentifiers:  productID as Set<NSObject>)
+		var request  = SKProductsRequest(productIdentifiers:  productID)
+//		var request  = SKProductsRequest(productIdentifiers:  productID as Set<NSObject>)
 		request.delegate = self
 		startIndicator()
 		request.start()
@@ -116,7 +116,7 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 				formatter.numberStyle = .CurrencyStyle
 				formatter.locale = product.priceLocale
 				var str = formatter.stringFromNumber(product.price)
-				var ids = (product as! SKProduct).productIdentifier
+				var ids = (product as SKProduct).productIdentifier
 				
 				for i in 0 ..< m_productIDList.count
 				{
@@ -147,7 +147,7 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		
 		for product in response.products
 		{
-			m_payment = SKPayment(product: product as! SKProduct)
+			m_payment = SKPayment(product: product as SKProduct)
 			SKPaymentQueue.defaultQueue().addTransactionObserver(self)
 			
 			
@@ -170,7 +170,7 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	{
 		for object in transactions
 		{
-			let transaction = object as! SKPaymentTransaction
+			let transaction = object as SKPaymentTransaction
 			var state = transaction.transactionState
 			
 			switch (state)
@@ -220,7 +220,7 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		
 		for transaction in queue.transactions
 		{
-			if (transaction as! SKPaymentTransaction).payment.productIdentifier == m_productID
+			if (transaction as SKPaymentTransaction).payment.productIdentifier == m_productID
 			{
 				printDebugMessage("found resotore")
 				restoreProduct(m_productID)
@@ -742,13 +742,13 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		{
 			if var data : AnyObject = json.getAnyObject("itemdesc")
 			{
-				var t = data as! [String]
+				var t = data as [String]
 				m_shopItemDesc = t
 			}
 					
 			if var data : AnyObject = json.getAnyObject("print")
 			{
-				var t = data as! [Int]
+				var t = data as [Int]
 				if t.count >= 2
 				{
 					m_itemDescPrintX = CGFloat(t[0])
