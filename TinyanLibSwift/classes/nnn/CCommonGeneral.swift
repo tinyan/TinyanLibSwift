@@ -45,7 +45,7 @@ public class CCommonGeneral : SKScene
 		super.init(size: size)
 		
 		self.backgroundColor = UIColor(red: 0.5, green: 0.8, blue: 0.3, alpha: 1.0)
-		scaleMode = .AspectFill
+		scaleMode = .AspectFit
 	}
 	
 	public func ExitMode()
@@ -58,6 +58,9 @@ public class CCommonGeneral : SKScene
 		m_commonCommand = -1
 	}
 
+	public func ReturnFromGamecenter()
+	{
+	}
 	
 //	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
 	override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
@@ -220,6 +223,7 @@ public class CCommonGeneral : SKScene
 			m_bgColorAlpha = CGFloat(alpha) / 255.0
 		}
 		
+		//fit?etc
 	}
 
 	
@@ -228,7 +232,6 @@ public class CCommonGeneral : SKScene
 		if var data : [T] = json.getArrayObject(keyList)
 		{
 			name = data
-			println("good0 \(data)")
 			return true
 		}
 		return false
@@ -239,7 +242,6 @@ public class CCommonGeneral : SKScene
 		if var data : T = json.getObject(keyList)
 		{
 			name = data
-			println("good0 \(data)")
 			return true
 		}
 		return false
@@ -252,7 +254,6 @@ public class CCommonGeneral : SKScene
 		if var pt : CGPoint = json.getCGPointObject(keyList)
 		{
 			name = pt
-			println("good0 \(pt)")
 			return true
 		}
 		return false
@@ -263,7 +264,6 @@ public class CCommonGeneral : SKScene
 		if var pt : CGSize = json.getCGSizeObject(keyList)
 		{
 			name = pt
-			println("good0 \(pt)")
 			return true
 		}
 		return false
@@ -274,10 +274,14 @@ public class CCommonGeneral : SKScene
 		if var pt : CGVector = json.getCGVectorObject(keyList)
 		{
 			name = pt
-			println("good0 \(pt)")
 			return true
 		}
 		return false
+	}
+	
+	public func setBGColor()
+	{
+		self.backgroundColor = UIColor(red: m_bgColorRed, green: m_bgColorGreen, blue: m_bgColorBlue, alpha: m_bgColorAlpha)
 	}
 	
 }

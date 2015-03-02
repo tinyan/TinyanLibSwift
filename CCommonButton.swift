@@ -71,11 +71,21 @@ public class CCommonButton : SKSpriteNode
 	}
 	
 	
-	public func addSprite(#sprite : SKSpriteNode , point:CGPoint)
+	public func addSprite(#sprite : SKSpriteNode , point:CGPoint , name:String = "default")
 	{
+		sprite.name = name
 		sprite.position = point
 		self.addChild(sprite)
 	}
+	
+	public func removeSprite(name:String = "default")
+	{
+		if var sprite = self.childNodeWithName(name)
+		{
+			sprite.removeFromParent()
+		}
+	}
+	
 	
 	public func addActionData(action:SKAction)
 	{

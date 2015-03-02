@@ -40,22 +40,32 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		return true
 	}
 	
-	func getPriceList(objects:[AnyObject])
+	func getProductIDSet(objects:[AnyObject]) -> Set<NSObject>
 	{
-		var productID = Set<NSObject>(arrayLiteral: objects)
-//		var productID : NSSet  = NSSet(array:objects)
+		return Set<NSObject>(arrayLiteral: objects)
+//		return NSSet(array:objects)
+	}
+	
+	
+	
+	func getPriceList(objects:[String])
+	{
+		var productID = getProductIDSet(objects)
 		var request  = SKProductsRequest(productIdentifiers: productID)
 		request.delegate = self
 		request.start()
 	}
 	
 	
-	func startPayment(object:AnyObject)
+//	func startPayment(object:AnyObject)
+	func startPayment(object:String)
 	{
 		m_paymentMode = true
-		m_productID = object as! String
+//		m_productID = object as! String
+		m_productID = object
 		
-		var productID = Set<NSObject>(arrayLiteral: [object])
+//		var productID = Set<NSObject>(arrayLiteral: [object])
+		var productID = getProductIDSet([object])
 //		var productID : NSSet  = NSSet(object:object)
 		var request  = SKProductsRequest(productIdentifiers: productID)
 		request.delegate = self
@@ -63,13 +73,16 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		request.start()
 	}
 	
-	func startRestore(object:AnyObject)
+	func startRestore(object:String)
 	{
 		m_paymentMode = false
-		m_productID = object as! String
+//		m_productID = object as! String
+		m_productID = object
 		
 		
-		var productID = Set<NSObject>(arrayLiteral: [object])
+//		var productID = Set<NSObject>(arrayLiteral: [object])
+		var productID = getProductIDSet([object])
+		
 		//		var productID : NSSet  = NSSet(object:object)
 		var request  = SKProductsRequest(productIdentifiers:  productID)
 		request.delegate = self

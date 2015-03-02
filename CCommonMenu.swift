@@ -30,6 +30,7 @@ public class CCommonMenu : SKSpriteNode
 	var m_buttonSize = CGSize(width:500,height:250)
 	var m_picNumberX = 1
 	var m_picNumberY = 1
+	var m_numberStart = 0
 	var m_commonButtonSound = -1
 	var m_buttonFilename : String!
 	var m_buttontexture : CCommonSpriteCutter!
@@ -42,11 +43,12 @@ public class CCommonMenu : SKSpriteNode
 		var size = CGSize(width:1,height:1)
 		super.init(texture: nil, color: color, size: size)
 	
-		if var list: AnyObject = json.getAnyObject(keyList: menu,"buttonList")
+	//	if var list: AnyObject = json.getAnyObject(keyList: menu,"buttonList")
+		if var list : [String] = json.getArrayObject(keyList: menu,"buttonList")
 		{
-			var buttonList = list as! [String]
-			m_buttonNameList = buttonList
-			m_buttonNumber = buttonList.count
+			//var buttonList = list as! [String]
+			m_buttonNameList = list
+			m_buttonNumber = list.count
 			m_picNumberY = m_buttonNumber
 		}
 		
@@ -73,6 +75,11 @@ public class CCommonMenu : SKSpriteNode
 		if var sound : Int = json.getObject(keyList: menu,"sound")
 		{
 			m_commonButtonSound = sound
+		}
+		
+		if var numberStart : Int = json.getObject(keyList:menu,"number")
+		{
+			m_numberStart = numberStart
 		}
 		
 		if var picNumber : [Int] = json.getArrayObject(keyList: menu, "picNumber")
@@ -121,6 +128,7 @@ public class CCommonMenu : SKSpriteNode
 			buttonPoint.x += m_buttonNext.dx * CGFloat(i)
 			buttonPoint.y += m_buttonNext.dy * CGFloat(i)
 			var sound = m_commonButtonSound
+			var buttonN = m_numberStart + i
 			
 			
 			//change by setup
@@ -140,11 +148,24 @@ public class CCommonMenu : SKSpriteNode
 				sound = snd
 			}
 
-			
+			if var btnN = setup.m_number
+			{
+				buttonN = btnN
+			}
 			
 			var texture : SKTexture! = nil
-			if m_buttontexture != nil
+			if setup.m_customPicFlag
 			{
+				println("a")
+				if var filename = setup.m_filename
+				{
+					println("b")
+					texture = SKTexture(imageNamed: filename)
+				}
+			}
+			else if m_buttontexture != nil
+			{
+				println("c")
 				var nx = 0
 				if i < status.count
 				{
@@ -156,8 +177,9 @@ public class CCommonMenu : SKSpriteNode
 			}
 			
 			
+			println("\(buttonPoint) \(buttonSize)")
 			var button = CCommonButton(general: m_parent, texture: texture, size: buttonSize)
-			button.setNumber(i)
+			button.setNumber(buttonN)
 			button.position = buttonPoint
 			button.zPosition = COMMON_BUTTON_LAYER_Z
 			button.m_sound = sound
