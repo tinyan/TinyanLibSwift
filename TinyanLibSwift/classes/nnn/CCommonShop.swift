@@ -334,7 +334,6 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 //	public var m_itemDescNextX : CGFloat = 0
 //	public var m_itemDescNextY : CGFloat = -150.0
 
-	public var m_debugMessagePrintFlag = true
 	
 	public var m_backMode = -1
 	public var m_backSound = -1
@@ -352,7 +351,7 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		
 		if var json = CCommonJsonObject.loadByFilename("init/shop")
 		{
-			getViewParam(json)
+			getCommonParam(json)
 
 			m_commonMenu = CCommonMenu(general: self, json: json, menu: "menu")
 			self.addChild(m_commonMenu)
@@ -383,7 +382,7 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 				getInitParam(json,name: &alreadyBuyFilename,keyList:top,"alreadyBuyFilename")
 				m_alreadyBuyPic = SKTexture(imageNamed: alreadyBuyFilename)
 				
-				getInitCGSize(json,name:&m_alreadyBuySize,keyList:top,"alreadyBuySize")
+				getInitParam(json,name:&m_alreadyBuySize,keyList:top,"alreadyBuySize")
 				
 				var itemButtonFilename = "bmp/shopitembutton.png"
 				getInitParam(json,name:&itemButtonFilename,keyList:top,"itemButtonFilename")
@@ -394,22 +393,22 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 
 				getInitParam(json, name: &m_restoreText, keyList: top,"restoreText")
 				
-				getInitCGSize(json,name:&m_itemSize,keyList:top,"itemSize")
-				getInitCGPoint(json,name:&m_itemPoint,keyList:top,"itemPoint")
-				getInitCGVector(json,name:&m_itemNext,keyList:top,"itemNext")
+				getInitParam(json,name:&m_itemSize,keyList:top,"itemSize")
+				getInitParam(json,name:&m_itemPoint,keyList:top,"itemPoint")
+				getInitParam(json,name:&m_itemNext,keyList:top,"itemNext")
 				
-				getInitCGVector(json, name: &m_buyButtonOffset, keyList: top,"buyButtonOffset")
-				getInitCGSize(json, name: &m_buyButtonSize, keyList: top,"buyButtonSize")
+				getInitParam(json, name: &m_buyButtonOffset, keyList: top,"buyButtonOffset")
+				getInitParam(json, name: &m_buyButtonSize, keyList: top,"buyButtonSize")
 				getInitParam(json,name:&m_buyButtonFontName,keyList:top,"buyButtonFontName")
 				getInitParam(json,name:&m_buyButtonFontSize,keyList:top,"buyButtonFontSize")
-				getInitCGVector(json, name: &m_restoreButtonOffset, keyList: top,"restoreButtonOffset")
-				getInitCGSize(json, name: &m_restoreButtonSize, keyList: top,"restoreButtonSize")
+				getInitParam(json, name: &m_restoreButtonOffset, keyList: top,"restoreButtonOffset")
+				getInitParam(json, name: &m_restoreButtonSize, keyList: top,"restoreButtonSize")
 				getInitParam(json,name:&m_restoreButtonFontName,keyList:top,"restoreButtonFontName")
 				getInitParam(json,name:&m_restoreButtonFontSize,keyList:top,"restoreButtonFontSize")
 				
 				getInitArray(json, name: &m_shopItemDesc, keyList: top,"shopItemDesc")
 				getInitParam(json,name:&m_shopItemDescFontFilename,keyList:top,"shopItemDescFontFilename")
-				getInitCGSize(json, name: &m_shopItemDescFontSize, keyList: top,"shopitemDescFontSize")
+				getInitParam(json, name: &m_shopItemDescFontSize, keyList: top,"shopitemDescFontSize")
 				
 			}
 			
@@ -868,13 +867,6 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	
 	
 
-	func printDebugMessage(mes:String)
-	{
-		if m_debugMessagePrintFlag
-		{
-			println(mes)
-		}
-	}
 	
 	public func myPlaySound(sound:Int)
 	{

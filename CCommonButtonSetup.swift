@@ -22,12 +22,12 @@ public class CCommonButtonSetup
 	
 	public init(json:CCommonJsonObject,buttonName:String="button")
 	{
-		if var point = json.getCGPointObject(keyList:buttonName,"point")
+		if var point : CGPoint = json.getObject(keyList:buttonName,"point")
 		{
 			m_point = point
 		}
 
-		if var buttonSize = json.getCGSizeObject(keyList:buttonName,"size")
+		if var buttonSize : CGSize = json.getObject(keyList:buttonName,"size")
 		{
 			m_size = buttonSize
 		}

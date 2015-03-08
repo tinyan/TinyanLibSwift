@@ -77,18 +77,47 @@ public class CCommonJsonObject
 	
 	public func getObject<T>(name:String) -> T?
 	{
+		var nameArray = name.componentsSeparatedByString(".")
+		return getObject(nameArray)
+/*
 		if var obj : AnyObject = getAnyObject(name)
 		{
 			return obj as? T
 		}
 
 		return nil
+*/
 	}
 
 	public func getObject<T>(keyArray:[String]) -> T?
 	{
 		if var obj : AnyObject = getAnyObject(keyArray)
 		{
+			var check : T?
+			if check is CGPoint? || check is CGSize? || check is CGVector?
+			{
+				var p = obj as! [Int]
+				if p.count < 2
+				{
+					return nil
+				}
+
+				if check is CGPoint?
+				{
+					return CGPoint(x:p[0],y:p[1]) as? T
+				}
+				if check is CGSize?
+				{
+					return CGSize(width:p[0],height:p[1]) as? T
+				}
+				if check is CGVector?
+				{
+					return CGVector(dx:p[0],dy:p[1]) as? T
+				}
+			}
+			
+			
+			
 			return obj as? T
 		}
 		return nil
@@ -96,11 +125,14 @@ public class CCommonJsonObject
 	
 	public func getObject<T>(#keyList:String...) -> T?
 	{
+		return getObject(keyList)
+		/*
 		if var obj : AnyObject = getAnyObject(keyList)
 		{
 			return obj as? T
 		}
 		return nil
+*/
 	}
 	
 	
@@ -135,7 +167,7 @@ public class CCommonJsonObject
 	
 	
 	
-	
+	/*
 	public func getCGVectorObject(name:String) -> CGVector?
 	{
 		var keyArray = name.componentsSeparatedByString(".")
@@ -208,7 +240,8 @@ public class CCommonJsonObject
 		return getCGPointObject(keyList)
 	}
 	
-
+*/
+	
 	
 	//common
 	

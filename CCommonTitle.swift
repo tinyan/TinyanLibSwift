@@ -46,7 +46,7 @@ public class CCommonTitle : CCommonGeneral
 		
 		if var json = CCommonJsonObject.loadByFilename("init/title")
 		{
-			getViewParam(json)
+			getCommonParam(json)
 			m_commonMenu = CCommonMenu(general: self, json: json, menu: "menu")
 			self.addChild(m_commonMenu)
 		}

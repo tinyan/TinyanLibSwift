@@ -22,7 +22,7 @@ public class CCommonMenu : SKSpriteNode
 	
 	var m_parent : CCommonGeneral
 	var m_buttonNumber = 0
-	var m_button : [CCommonButton] = []
+	public var m_button : [CCommonButton] = []
 	var m_buttonNameList : [String] = []
 	var m_buttonSetup : [CCommonButtonSetup] = []
 	var m_buttonStart = CGPoint(x:450,y:1300)
@@ -30,7 +30,7 @@ public class CCommonMenu : SKSpriteNode
 	var m_buttonSize = CGSize(width:500,height:250)
 	var m_picNumberX = 1
 	var m_picNumberY = 1
-	var m_numberStart = 0
+	var m_serialStart = 0
 	var m_commonButtonSound = -1
 	var m_buttonFilename : String!
 	var m_buttontexture : CCommonSpriteCutter!
@@ -52,14 +52,17 @@ public class CCommonMenu : SKSpriteNode
 			m_picNumberY = m_buttonNumber
 		}
 		
+	//	println("menu:\(menu) bs:\(m_buttonStart)")
+//		if var start : CGPoint = json.getCGPointObject(keyList: menu,"start")
 		if var start : CGPoint = json.getObject(keyList: menu,"start")
 		{
-			var buttonStart = start
+			m_buttonStart = start
 		}
+	//	println("bs2:\(m_buttonStart)")
 		
 		if var next : CGVector = json.getObject(keyList: menu,"next")
 		{
-			var buttonNext = next
+			m_buttonNext = next
 		}
 		
 		if var size : CGSize = json.getObject(keyList: menu,"size")
@@ -77,9 +80,9 @@ public class CCommonMenu : SKSpriteNode
 			m_commonButtonSound = sound
 		}
 		
-		if var numberStart : Int = json.getObject(keyList:menu,"number")
+		if var serialStart : Int = json.getObject(keyList:menu,"serial")
 		{
-			m_numberStart = numberStart
+			m_serialStart = serialStart
 		}
 		
 		if var picNumber : [Int] = json.getArrayObject(keyList: menu, "picNumber")
@@ -128,15 +131,17 @@ public class CCommonMenu : SKSpriteNode
 			buttonPoint.x += m_buttonNext.dx * CGFloat(i)
 			buttonPoint.y += m_buttonNext.dy * CGFloat(i)
 			var sound = m_commonButtonSound
-			var buttonN = m_numberStart + i
+			var buttonN = m_serialStart + i
 			
 			
 			//change by setup
 			
+			//println("bp:\(buttonPoint)")
 			if var point = setup.m_point
 			{
 				buttonPoint = point
 			}
+		//	println("bp2:\(buttonPoint)")
 			
 			if var sz = setup.m_size
 			{
@@ -156,16 +161,16 @@ public class CCommonMenu : SKSpriteNode
 			var texture : SKTexture! = nil
 			if setup.m_customPicFlag
 			{
-				println("a")
+				//println("a")
 				if var filename = setup.m_filename
 				{
-					println("b")
+					//println("b")
 					texture = SKTexture(imageNamed: filename)
 				}
 			}
 			else if m_buttontexture != nil
 			{
-				println("c")
+				//println("c")
 				var nx = 0
 				if i < status.count
 				{
@@ -177,7 +182,7 @@ public class CCommonMenu : SKSpriteNode
 			}
 			
 			
-			println("\(buttonPoint) \(buttonSize)")
+			//println("\(buttonPoint) \(buttonSize)")
 			var button = CCommonButton(general: m_parent, texture: texture, size: buttonSize)
 			button.setNumber(buttonN)
 			button.position = buttonPoint

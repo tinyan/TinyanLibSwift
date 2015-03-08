@@ -37,6 +37,8 @@ public class CCommonGeneral : SKScene
 	public var m_bgColorBlue : CGFloat = 0.9
 	public var m_bgColorAlpha : CGFloat = 1.0
 	
+	public var m_debugMessagePrintFlag = true
+
 	public init(modeNumber:Int , game : CCommonGame, size:CGSize)
 	{
 		m_game = game
@@ -204,7 +206,7 @@ public class CCommonGeneral : SKScene
 		return image2
 	}
 	
-	public func getViewParam(json:CCommonJsonObject)
+	public func getCommonParam(json:CCommonJsonObject)
 	{
 		if var red : Int = json.getObject(keyList: "view","red")
 		{
@@ -223,7 +225,13 @@ public class CCommonGeneral : SKScene
 			m_bgColorAlpha = CGFloat(alpha) / 255.0
 		}
 		
+		
+		
 		//fit?etc
+		if var debugFlag : Bool = json.getObject(keyList: "debug","messageFlag")
+		{
+			m_debugMessagePrintFlag = debugFlag
+		}
 	}
 
 	
@@ -248,10 +256,10 @@ public class CCommonGeneral : SKScene
 	}
 	
 	
-	
+	/*
 	public func getInitCGPoint(json:CCommonJsonObject,inout name:CGPoint,keyList:String...) -> Bool
 	{
-		if var pt : CGPoint = json.getCGPointObject(keyList)
+		if var pt : CGPoint = json.getObject(keyList)
 		{
 			name = pt
 			return true
@@ -278,10 +286,19 @@ public class CCommonGeneral : SKScene
 		}
 		return false
 	}
+	*/
 	
 	public func setBGColor()
 	{
 		self.backgroundColor = UIColor(red: m_bgColorRed, green: m_bgColorGreen, blue: m_bgColorBlue, alpha: m_bgColorAlpha)
+	}
+
+	public func printDebugMessage(mes:String)
+	{
+		if m_debugMessagePrintFlag
+		{
+			println(mes)
+		}
 	}
 	
 }

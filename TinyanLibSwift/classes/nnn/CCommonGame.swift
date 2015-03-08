@@ -86,7 +86,7 @@ public class CCommonGame
 			{
 				m_achievementName = achievementName
 			}
-			if var gameScreenSize : CGSize = json.getCGSizeObject(keyList:"gameScreenSize")
+			if var gameScreenSize : CGSize = json.getObject(keyList:"gameScreenSize")
 			{
 				m_gameScreenSize = gameScreenSize
 			}

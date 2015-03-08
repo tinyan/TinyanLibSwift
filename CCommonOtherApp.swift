@@ -25,12 +25,21 @@ public class CCommonOtherApp : CCommonGeneral
 	public var m_picFilename : [String] = []
 	public var m_size : [CGSize] = []
 	public var m_point : [CGPoint] = []
+	public var m_ssPicFilename : [String] = []
+	public var m_ssPoint : [CGPoint] = []
+	public var m_ssSize : [CGSize] = []
 	
 	public var m_appButton : [CCommonButton] = []
 	
 	
 	public var m_fontName = "Helvetica-Bold"
 	public var m_fontSize : CGFloat = 64.0
+	
+	public var m_commentFontName = "Helvetica-Bold"
+	public var m_commentFontSize : CGFloat = 32.0
+	
+	public var m_commentPoint = CGPoint(x:500,y:200)
+	public var m_commentNext = CGVector(dx:0,dy:-40)
 	
 	override public init(modeNumber:Int , game : CCommonGame, size:CGSize)
 	{
@@ -43,9 +52,22 @@ public class CCommonOtherApp : CCommonGeneral
 		
 		if var json = CCommonJsonObject.loadByFilename("init/otherapp")
 		{
-			getViewParam(json)
+			getCommonParam(json)
 			m_commonMenu = CCommonMenu(general: self, json: json, menu: "menu")
 			self.addChild(m_commonMenu)
+			
+			if var dummy : AnyObject = json.getAnyObject("common")
+			{
+				var top = "common"
+				getInitParam(json, name: &m_fontName, keyList: top,"fontName")
+				getInitParam(json, name: &m_fontSize, keyList: top,"fontSize")
+				getInitParam(json, name: &m_commentFontName, keyList: top,"commentFontName")
+				getInitParam(json, name: &m_commentFontSize, keyList: top,"commentFontSize")
+				
+				getInitParam(json, name: &m_commentPoint, keyList: top,"commentPoint")
+				getInitParam(json, name: &m_commentNext, keyList: top,"commentNext")
+			}
+			
 			
 			getInitArray(json, name: &m_appName, keyList: "applist")
 			for i in 0 ..< m_appName.count
@@ -56,11 +78,17 @@ public class CCommonOtherApp : CCommonGeneral
 				m_picFilename.append("")
 				getInitParam(json,name: &m_picFilename[i], keyList: top,"picFilename")
 				m_size.append(CGSize(width: 400, height: 400))
-				getInitCGSize(json, name: &m_size[i], keyList: top,"size")
+				getInitParam(json, name: &m_size[i], keyList: top,"size")
 				m_point.append(CGPoint(x:0,y:0))
-				getInitCGPoint(json, name: &m_point[i], keyList: top,"point")
+				getInitParam(json, name: &m_point[i], keyList: top,"point")
 				m_comment.append([])
 				getInitArray(json, name: &m_comment[i], keyList: top,"comment")
+				m_ssPicFilename.append("")
+				getInitParam(json,name: &m_ssPicFilename[i], keyList: top,"ssPicFilename")
+				m_ssSize.append(CGSize(width: 400, height: 400))
+				getInitParam(json, name: &m_ssSize[i], keyList: top,"ssSize")
+				m_ssPoint.append(CGPoint(x:0,y:0))
+				getInitParam(json, name: &m_ssPoint[i], keyList: top,"ssPoint")
 			}
 		}
 		
@@ -95,14 +123,14 @@ public class CCommonOtherApp : CCommonGeneral
 				var app = cmd - 3
 				if app >= 0 && app < m_appName.count
 				{
-					println("url start?")
+					printDebugMessage("url start?")
 					if var url = NSURL(string:m_link[app])
 					{
 						UIApplication.sharedApplication().openURL(url)
 					}
 					else
 					{
-						println("url error")
+						printDebugMessage("url error")
 					}
 				}
 			}
@@ -178,6 +206,40 @@ public class CCommonOtherApp : CCommonGeneral
 			label.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
 			label.position = CGPoint(x:0,y:m_size[i].height / 2.0 + m_fontSize / 2.0)
 			button.addChild(label)
+			
+			if m_ssPicFilename[i] != ""
+			{
+				var ssSprite = SKSpriteNode(imageNamed: m_ssPicFilename[i])
+				ssSprite.size = m_ssSize[i]
+				ssSprite.position = m_ssPoint[i]
+				button.addChild(ssSprite)
+			}
+			
+			//comment
+			var commentList = m_comment[i]
+			if commentList.count > 0
+			{
+				for k in 0 ..< commentList.count
+				{
+					var commentPoint = m_commentPoint
+					commentPoint.x += m_commentNext.dx * CGFloat(k)
+					commentPoint.y += m_commentNext.dy * CGFloat(k)
+					
+					var commentLabel = SKLabelNode(text:commentList[k])
+					commentLabel.fontName = m_commentFontName
+					commentLabel.fontSize = m_commentFontSize
+					commentLabel.fontColor = UIColor.cyanColor()
+					commentLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Baseline
+					commentLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+					commentLabel.position = commentPoint
+					button.addChild(commentLabel)
+					
+					printDebugMessage("comment:\(commentList[k]) \(commentPoint)")
+					
+				}
+			}
+			
+			
 			
 			self.addChild(button)
 			m_appButton.append(button)
