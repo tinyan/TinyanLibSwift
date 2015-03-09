@@ -60,8 +60,12 @@ public class CCommonGeneral : SKScene
 		m_commonCommand = -1
 	}
 
-	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
-//	override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
+	public func ReturnFromGamecenter()
+	{
+	}
+	
+//	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
+	override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
 	{
 		if m_game.checkActive()
 		{

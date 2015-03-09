@@ -42,9 +42,16 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	
 	func getProductIDSet(objects:[AnyObject]) -> Set<NSObject>
 	{
-		var productID : NSSet  = NSSet(array:objects)
+		return Set<NSObject>(arrayLiteral: objects)
+//		return NSSet(array:objects)
+	}
+	
+	
+	
+	func getPriceList(objects:[String])
+	{
+		var productID = getProductIDSet(objects)
 		var request  = SKProductsRequest(productIdentifiers: productID)
-//		var request  = SKProductsRequest(productIdentifiers: productID as Set<NSObject>)
 		request.delegate = self
 		request.start()
 	}
@@ -54,12 +61,13 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	func startPayment(object:String)
 	{
 		m_paymentMode = true
-		m_productID = object as NSString as String
+//		m_productID = object as! String
+		m_productID = object
 		
-		
-		var productID : NSSet  = NSSet(object:object)
-		var request  = SKProductsRequest(productIdentifiers: productID )
-//		var request  = SKProductsRequest(productIdentifiers: productID as Set<NSObject>)
+//		var productID = Set<NSObject>(arrayLiteral: [object])
+		var productID = getProductIDSet([object])
+//		var productID : NSSet  = NSSet(object:object)
+		var request  = SKProductsRequest(productIdentifiers: productID)
 		request.delegate = self
 		startIndicator()
 		request.start()
@@ -68,14 +76,15 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	func startRestore(object:String)
 	{
 		m_paymentMode = false
-		m_productID = object as NSString as String
+//		m_productID = object as! String
+		m_productID = object
+		
 		
 //		var productID = Set<NSObject>(arrayLiteral: [object])
 		var productID = getProductIDSet([object])
 		
-		var productID : NSSet  = NSSet(object:object)
+		//		var productID : NSSet  = NSSet(object:object)
 		var request  = SKProductsRequest(productIdentifiers:  productID)
-//		var request  = SKProductsRequest(productIdentifiers:  productID as Set<NSObject>)
 		request.delegate = self
 		startIndicator()
 		request.start()
@@ -149,7 +158,7 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		
 		for product in response.products as! [SKProduct]
 		{
-			m_payment = SKPayment(product: product as SKProduct)
+			m_payment = SKPayment(product: product)
 			SKPaymentQueue.defaultQueue().addTransactionObserver(self)
 			
 			
@@ -172,7 +181,7 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	{
 		for transaction in transactions as! [SKPaymentTransaction]
 		{
-			let transaction = object as SKPaymentTransaction
+			//let transaction = object as! SKPaymentTransaction
 			var state = transaction.transactionState
 			
 			switch (state)
@@ -222,7 +231,7 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		
 		for transaction in queue.transactions as! [SKPaymentTransaction]
 		{
-			if (transaction as SKPaymentTransaction).payment.productIdentifier == m_productID
+			if transaction.payment.productIdentifier == m_productID
 			{
 				printDebugMessage("found resotore")
 				restoreProduct(m_productID)

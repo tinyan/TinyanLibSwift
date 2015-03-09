@@ -213,18 +213,8 @@ public class CCommonJsonObject
 	
 	public func getCGPointObject(name:String) -> CGPoint?
 	{
-		if var obj: AnyObject = getAnyObject(name)
-		{
-			var p = obj as [Int]
-			if p.count < 2
-			{
-				return nil
-			}
-				
-			return CGPoint(x:p[0],y:p[1])
-		}
-		
-		return nil
+		var keyArray = name.componentsSeparatedByString(".")
+		return getCGPointObject(keyArray)
 	}
 	
 	public func getCGPointObject(keyArray:[String]) -> CGPoint?
@@ -247,18 +237,7 @@ public class CCommonJsonObject
 	
 	public func getCGPointObject(#keyList:String...) -> CGPoint?
 	{
-		if var obj: AnyObject = getAnyObject(keyList)
-		{
-			var p = obj as [Int]
-			if p.count < 2
-			{
-				return nil
-			}
-			
-			return CGPoint(x:p[0],y:p[1])
-		}
-		
-		return nil
+		return getCGPointObject(keyList)
 	}
 	
 */

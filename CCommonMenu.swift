@@ -46,9 +46,9 @@ public class CCommonMenu : SKSpriteNode
 	//	if var list: AnyObject = json.getAnyObject(keyList: menu,"buttonList")
 		if var list : [String] = json.getArrayObject(keyList: menu,"buttonList")
 		{
-			var buttonList = list as [String]
-			m_buttonNameList = buttonList
-			m_buttonNumber = buttonList.count
+			//var buttonList = list as! [String]
+			m_buttonNameList = list
+			m_buttonNumber = list.count
 			m_picNumberY = m_buttonNumber
 		}
 		
