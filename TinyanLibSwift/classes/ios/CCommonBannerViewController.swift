@@ -13,6 +13,7 @@ public class CCommonBannerViewController : CCommonViewController , ADBannerViewD
 {
 	var m_type = 0
 	var m_banner : ADBannerView!
+	var m_dontPrint = false
 	
 	
 	override public func viewDidLoad()
@@ -159,7 +160,8 @@ public class CCommonBannerViewController : CCommonViewController , ADBannerViewD
 		}
 		
 		banner.frame = CGRect(x:0,y:-height,width:width,height:height)
-		banner.hidden = false
+//		banner.hidden = false
+		banner.hidden = m_dontPrint
 		
 		UIView.beginAnimations(nil, context: nil)
 		banner.frame  = CGRect(x:0,y:0,width:width,height:height)
@@ -203,6 +205,11 @@ public class CCommonBannerViewController : CCommonViewController , ADBannerViewD
 	public func bannerViewWillLoadAd(banner: ADBannerView!)
 	{
 		
+	}
+	
+	public func setDontPrint(flag : Bool = true)
+	{
+		m_dontPrint = flag
 	}
 	
 }

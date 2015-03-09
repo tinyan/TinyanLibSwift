@@ -26,6 +26,9 @@ public class CCommonViewController: UIViewController , GKGameCenterControllerDel
 		skView.showsFPS = true
 		skView.showsNodeCount = true
 		
+		let skView = self.view as! SKView
+//		skView.showsFPS = true
+//		skView.showsNodeCount = true
 		/* Sprite Kit applies additional optimizations to improve rendering performance */
 		skView.ignoresSiblingOrder = true
 		
@@ -86,7 +89,6 @@ public class CCommonViewController: UIViewController , GKGameCenterControllerDel
 	public func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!)
 	{
 		self.dismissViewControllerAnimated(true, completion: nil)
-	//	NSLog("gameCenterViewControllerDidFinish")
 		m_game.inGameCenter(false)
 	}
 	

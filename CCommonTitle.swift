@@ -46,7 +46,7 @@ public class CCommonTitle : CCommonGeneral
 		
 		if var json = CCommonJsonObject.loadByFilename("init/title")
 		{
-			getViewParam(json)
+			getCommonParam(json)
 			m_commonMenu = CCommonMenu(general: self, json: json, menu: "menu")
 			self.addChild(m_commonMenu)
 		}
@@ -65,7 +65,6 @@ public class CCommonTitle : CCommonGeneral
 		super.EnterMode()
 
 		m_commonMenu?.createAllButton([])
-		
 		setButtonStatus()
 		checkPlayer()
 	}
@@ -75,6 +74,13 @@ public class CCommonTitle : CCommonGeneral
 		super.ExitMode()
 	}
 	
+	override public func ReturnFromGamecenter()
+	{
+		m_commonMenu?.createAllButton([])
+		setButtonStatus()
+		checkPlayer()
+	}
+
 	public override func onUpdate(currentTime: CFTimeInterval)
 	{
 		super.onUpdate(currentTime)

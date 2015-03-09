@@ -71,11 +71,26 @@ public class CCommonButton : SKSpriteNode
 	}
 	
 	
-	public func addSprite(#sprite : SKSpriteNode , point:CGPoint)
+	public func addSprite(#sprite : SKSpriteNode , point:CGPoint , name:String = "default")
 	{
+		sprite.name = name
 		sprite.position = point
 		self.addChild(sprite)
 	}
+	
+	public func removeSprite(name:String = "default")
+	{
+		if var sprite = self.childNodeWithName(name)
+		{
+//			println("found!")
+			sprite.removeFromParent()
+		}
+		else
+		{
+//			println("not found sprite name:\(name)")
+		}
+	}
+	
 	
 	public func addActionData(action:SKAction)
 	{
@@ -95,7 +110,7 @@ public class CCommonButton : SKSpriteNode
 	{
 		removeFromParent()
 	}
-	
+
 	
 // orverride public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
 	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)

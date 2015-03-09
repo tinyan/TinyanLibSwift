@@ -32,11 +32,13 @@ public class CCommonGeneral : SKScene
 	public var m_commonLastCount = 0
 	
 
-	public var m_bgColorRed : CGFloat = 0.5
-	public var m_bgColorGreen : CGFloat = 0.5
-	public var m_bgColorBlue : CGFloat = 0.5
+	public var m_bgColorRed : CGFloat = 0.1
+	public var m_bgColorGreen : CGFloat = 0.1
+	public var m_bgColorBlue : CGFloat = 0.9
 	public var m_bgColorAlpha : CGFloat = 1.0
 	
+	public var m_debugMessagePrintFlag = true
+
 	public init(modeNumber:Int , game : CCommonGame, size:CGSize)
 	{
 		m_game = game
@@ -45,7 +47,7 @@ public class CCommonGeneral : SKScene
 		super.init(size: size)
 		
 		self.backgroundColor = UIColor(red: 0.5, green: 0.8, blue: 0.3, alpha: 1.0)
-		scaleMode = .AspectFill
+		scaleMode = .AspectFit
 	}
 	
 	public func ExitMode()
@@ -200,7 +202,7 @@ public class CCommonGeneral : SKScene
 		return image2
 	}
 	
-	public func getViewParam(json:CCommonJsonObject)
+	public func getCommonParam(json:CCommonJsonObject)
 	{
 		if var red : Int = json.getObject(keyList: "view","red")
 		{
@@ -219,6 +221,80 @@ public class CCommonGeneral : SKScene
 			m_bgColorAlpha = CGFloat(alpha) / 255.0
 		}
 		
+		
+		
+		//fit?etc
+		if var debugFlag : Bool = json.getObject(keyList: "debug","messageFlag")
+		{
+			m_debugMessagePrintFlag = debugFlag
+		}
 	}
 
+	
+	public func getInitArray<T>(json:CCommonJsonObject,inout name:[T],keyList:String...) -> Bool
+	{
+		if var data : [T] = json.getArrayObject(keyList)
+		{
+			name = data
+			return true
+		}
+		return false
+	}
+	
+	public func getInitParam<T>(json:CCommonJsonObject,inout name:T,keyList:String...) -> Bool
+	{
+		if var data : T = json.getObject(keyList)
+		{
+			name = data
+			return true
+		}
+		return false
+	}
+	
+	
+	/*
+	public func getInitCGPoint(json:CCommonJsonObject,inout name:CGPoint,keyList:String...) -> Bool
+	{
+		if var pt : CGPoint = json.getObject(keyList)
+		{
+			name = pt
+			return true
+		}
+		return false
+	}
+	
+	public func getInitCGSize(json:CCommonJsonObject,inout name:CGSize,keyList:String...) -> Bool
+	{
+		if var pt : CGSize = json.getCGSizeObject(keyList)
+		{
+			name = pt
+			return true
+		}
+		return false
+	}
+	
+	public func getInitCGVector(json:CCommonJsonObject,inout name:CGVector,keyList:String...) -> Bool
+	{
+		if var pt : CGVector = json.getCGVectorObject(keyList)
+		{
+			name = pt
+			return true
+		}
+		return false
+	}
+	*/
+	
+	public func setBGColor()
+	{
+		self.backgroundColor = UIColor(red: m_bgColorRed, green: m_bgColorGreen, blue: m_bgColorBlue, alpha: m_bgColorAlpha)
+	}
+
+	public func printDebugMessage(mes:String)
+	{
+		if m_debugMessagePrintFlag
+		{
+			println(mes)
+		}
+	}
+	
 }

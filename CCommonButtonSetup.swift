@@ -16,17 +16,18 @@ public class CCommonButtonSetup
 	public var m_point : CGPoint!
 	public var m_size :  CGSize!
 	public var m_sound : Int!
+	public var m_number : Int!
 	public var m_filename : String!
 	public var m_customPicFlag = false
 	
 	public init(json:CCommonJsonObject,buttonName:String="button")
 	{
-		if var point = json.getCGPointObject(keyList:buttonName,"point")
+		if var point : CGPoint = json.getObject(keyList:buttonName,"point")
 		{
 			m_point = point
 		}
 
-		if var buttonSize = json.getCGSizeObject(keyList:buttonName,"size")
+		if var buttonSize : CGSize = json.getObject(keyList:buttonName,"size")
 		{
 			m_size = buttonSize
 		}
@@ -36,6 +37,20 @@ public class CCommonButtonSetup
 			m_sound = sound
 		}
 		
+		if var nm : Int = json.getObject(keyList:buttonName,"number")
+		{
+			m_number = nm
+		}
+		
+		if var customFlag : Bool = json.getObject(keyList:buttonName,"customPic")
+		{
+			m_customPicFlag = customFlag
+		}
+		
+		if var filename : String = json.getObject(keyList:buttonName,"filename")
+		{
+			m_filename = filename
+		}
 	}
 	
 }

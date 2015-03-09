@@ -38,10 +38,19 @@ public class CCommonGame
 	public var m_gamecenterControl : CCommonGamecenterDataControl!
 	
 	
+	public var m_highscoreName : [String] = []
+	public var m_achievementName : [String] = []
+	public var m_gameScreenSize = CGSize(width: 900, height: 1600)
+	
 	var m_userHighScoreData : CCommonUserData!
 	var m_userAchievementData : CCommonUserData!
 	
 	public var m_userConfigData : CCommonUserData!
+	public var m_returnFromGamecenterToMode = TITLE_MODE
+	
+	public var m_showsNodeCount = false
+	public var m_showsFPS = false
+	
 	
 	var m_deviceScreenSize = CGSize(width: 1, height: 1)
 	var m_deviceScreenSizeLandscape = CGSize(width: 1, height: 1)
@@ -67,6 +76,34 @@ public class CCommonGame
 		m_deviceScreenSizeLandscape.height = m_deviceScreenSize.width;
 		
 		
+		if var json = CCommonJsonObject.loadByFilename("init/game")
+		{
+			if var highscoreName : [String] = json.getArrayObject(keyList: "highscoreName")
+			{
+				m_highscoreName = highscoreName
+			}
+			if var achievementName : [String] = json.getArrayObject(keyList: "achievementName")
+			{
+				m_achievementName = achievementName
+			}
+			if var gameScreenSize : CGSize = json.getObject(keyList:"gameScreenSize")
+			{
+				m_gameScreenSize = gameScreenSize
+			}
+			if var showsFPS : Bool = json.getObject(keyList:"showsFPS")
+			{
+				m_showsFPS = showsFPS
+			}
+			if var showsNodeCount : Bool = json.getObject(keyList:"showsNodeCount")
+			{
+				m_showsNodeCount = showsNodeCount
+			}
+		}
+		
+		
+		
+		
+		
 		m_userConfigData = CCommonUserData(filename: "userConfig.dat")
 		m_userConfigData.addNames([COMMON_CONFIG_SOUND_FLAG,COMMON_CONFIG_GAMECENTER_FLAG])
 		m_userConfigData.setBoolData(COMMON_CONFIG_SOUND_FLAG, flag: true)
@@ -75,6 +112,20 @@ public class CCommonGame
 	}
 	
 	
+	func getSKView() -> SKView
+	{
+		return m_viewController.view as! SKView
+	}
+	
+	public func startMain(mode:Int)
+	{
+		let skView = getSKView()
+		m_mode = mode
+		m_general[m_mode]?.EnterMode()
+		skView.presentScene(m_general[m_mode])
+		skView.showsFPS = m_showsFPS
+		skView.showsNodeCount = m_showsNodeCount
+	}
 	
 	public func changeMode(newMode : Int)
 	{
@@ -121,6 +172,13 @@ public class CCommonGame
 		}
 		else
 		{
+			if m_mode == m_returnFromGamecenterToMode
+			{
+				if var general = m_general[m_mode]
+				{
+					general.ReturnFromGamecenter()
+				}
+			}
 		}
 		
 		m_inGamecenter = flag
