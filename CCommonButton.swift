@@ -82,7 +82,12 @@ public class CCommonButton : SKSpriteNode
 	{
 		if var sprite = self.childNodeWithName(name)
 		{
+//			println("found!")
 			sprite.removeFromParent()
+		}
+		else
+		{
+//			println("not found sprite name:\(name)")
 		}
 	}
 	
