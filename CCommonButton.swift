@@ -110,7 +110,7 @@ public class CCommonButton : SKSpriteNode
 	{
 		removeFromParent()
 	}
-	
+
 	
 	override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
 //	override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
