@@ -36,10 +36,12 @@ public class CCommonBannerViewController : CCommonViewController , ADBannerViewD
 		var frame = UIScreen.mainScreen().applicationFrame
 		var height :CGFloat = m_banner.frame.size.height
 		var width = frame.size.width
+		/*
 		if (self.interfaceOrientation == UIInterfaceOrientation.LandscapeLeft) || (self.interfaceOrientation == UIInterfaceOrientation.LandscapeRight)
 		{
 			width = frame.size.height
 		}
+		*/
 		
 		m_banner.frame = CGRectMake(0, -height, frame.size.width, height)
 		m_banner.autoresizesSubviews = true
@@ -114,9 +116,17 @@ public class CCommonBannerViewController : CCommonViewController , ADBannerViewD
 		return true
 	}
 	
-	override public func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval)
+	
+	public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
 	{
-		super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
+		super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+	}
+	
+	
+
+//	override public func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval)
+//	{
+//		super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
 	/*
 		if (0)
 		{
@@ -143,7 +153,7 @@ public class CCommonBannerViewController : CCommonViewController , ADBannerViewD
 		
 		[m_game willRotate:self.interfaceOrientation to:toInterfaceOrientation duration:duration];
 */
-	}
+//	}
 	
 	
 	public func bannerViewDidLoadAd(banner: ADBannerView!)
@@ -153,11 +163,12 @@ public class CCommonBannerViewController : CCommonViewController , ADBannerViewD
 		var height = banner.frame.size.height
 		var width = deviceSize.width
 		
-		
+		/*
 		if (self.interfaceOrientation == UIInterfaceOrientation.LandscapeLeft) || (self.interfaceOrientation == UIInterfaceOrientation.LandscapeRight)
 		{
 			width = deviceSize.height;
 		}
+		*/
 		
 		banner.frame = CGRect(x:0,y:-height,width:width,height:height)
 //		banner.hidden = false

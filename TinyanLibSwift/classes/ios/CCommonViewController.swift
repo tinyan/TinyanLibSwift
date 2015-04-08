@@ -56,7 +56,7 @@ public class CCommonViewController: UIViewController , GKGameCenterControllerDel
 	*/
 	
 	
-	
+	/*
 	override public func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation)
 	{
 		//	[m_game onRotate:self.interfaceOrientation from:fromInterfaceOrientation];
@@ -69,7 +69,13 @@ public class CCommonViewController: UIViewController , GKGameCenterControllerDel
 
 		
 	}
+	*/
 	
+	
+	public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
+	{
+	
+	}
 	
 	public func showBanner(title:String , message:String)
 	{
