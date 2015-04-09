@@ -12,6 +12,7 @@ import Foundation
 
 
 
+
 public class CCommonUserData
 {
 	var m_filename : String?
