@@ -146,13 +146,13 @@ public class CCommonJsonObject
 	{
 		if var obj : AnyObject = getAnyObject(keyArray)
 		{
-			var p = obj as [AnyObject]
+			var p = obj as! [AnyObject]
 			if p.count > 0
 			{
 				var ret : [T] = []
 				for i  in 0 ..< p.count
 				{
-					ret.append(p[i] as T)
+					ret.append(p[i] as! T)
 				}
 				return ret
 			}
@@ -221,7 +221,7 @@ public class CCommonJsonObject
 	{
 		if var obj: AnyObject = getAnyObject(keyArray)
 		{
-			var p = obj as [Int]
+			var p = obj as! [Int]
 			if p.count < 2
 			{
 				return nil

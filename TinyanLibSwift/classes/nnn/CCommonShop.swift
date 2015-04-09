@@ -866,32 +866,6 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 	
 	
 	
-	public func loadShopItemDesc()
-	{
-		if var json = CCommonJsonObject.loadByFilename("text/shopitemdesc")
-		{
-			if var data : AnyObject = json.getAnyObject("itemdesc")
-			{
-				var t = data as! [String]
-				m_shopItemDesc = t
-			}
-					
-			if var data : AnyObject = json.getAnyObject("print")
-			{
-				var t = data as! [Int]
-				if t.count >= 2
-				{
-					m_itemDescPrintX = CGFloat(t[0])
-					m_itemDescPrintY = CGFloat(t[1])
-				}
-				if t.count >= 4
-				{
-					m_itemDescNextX = CGFloat(t[2])
-					m_itemDescNextY = CGFloat(t[3])
-				}
-			}
-		}
-	}
 
 	
 	public func myPlaySound(sound:Int)

@@ -203,7 +203,7 @@ public class CCommonGamecenterDataControl
 					}
 				}
 				
-				self.setGamecenterAchievements(achievements as [GKAchievement])
+				self.setGamecenterAchievements(achievements as! [GKAchievement])
 				
 				self.m_achievementLoadFlag = true
 				self.m_achievementLoadingFlag = false
