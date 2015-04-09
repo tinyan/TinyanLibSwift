@@ -127,7 +127,7 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 				formatter.numberStyle = .CurrencyStyle
 				formatter.locale = product.priceLocale
 				var str = formatter.stringFromNumber(product.price)
-				var ids = (product as SKProduct).productIdentifier
+				var ids = (product as! SKProduct).productIdentifier
 				
 				for i in 0 ..< m_productIDList.count
 				{
@@ -872,13 +872,13 @@ public class CCommonShop : CCommonGeneral , SKProductsRequestDelegate , SKPaymen
 		{
 			if var data : AnyObject = json.getAnyObject("itemdesc")
 			{
-				var t = data as [String]
+				var t = data as! [String]
 				m_shopItemDesc = t
 			}
 					
 			if var data : AnyObject = json.getAnyObject("print")
 			{
-				var t = data as [Int]
+				var t = data as! [Int]
 				if t.count >= 2
 				{
 					m_itemDescPrintX = CGFloat(t[0])
